@@ -1,22 +1,10 @@
-import { Link } from "react-router-dom";
-
-const Nav = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const role = user?.data?.role;
-
+import TopNav from "./TopNav";
+function Nav() {
   return (
-    <div className="flex justify-between items-center bg-gray-800 text-white p-4">
-      <div>Home Link</div>
-
-      {!role ? (
-        <Link to={"/login"}>Login</Link>
-      ) : role === "user" ? (
-        <>User Role</>
-      ) : (
-        <>Admin Role</>
-      )}
-    </div>
+    <header>
+      <TopNav />
+    </header>
   );
-};
+}
 
 export default Nav;
