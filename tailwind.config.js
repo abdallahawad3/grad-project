@@ -6,6 +6,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
+    // shadow
+    boxShadow: {
+      sm: "0 1px 2px 0 hsla(0, 0%, 90%, 1)",
+      DEFAULT: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+      md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+    },
     colors: {
       gray: {
         "50": "hsla(0, 0%, 95%, 1)",
@@ -62,7 +72,7 @@ export default {
         {
           lineHeight: "120%",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       display2: [
@@ -78,7 +88,7 @@ export default {
         {
           lineHeight: "56px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       display4: [
@@ -86,7 +96,7 @@ export default {
         {
           lineHeight: "48px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       display5: [
@@ -94,7 +104,7 @@ export default {
         {
           lineHeight: "44px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       // Heading
@@ -103,7 +113,7 @@ export default {
         {
           lineHeight: "40px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       heading2: [
@@ -111,7 +121,7 @@ export default {
         {
           lineHeight: "32px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       heading3: [
@@ -119,7 +129,7 @@ export default {
         {
           lineHeight: "32px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       heading4: [
@@ -127,15 +137,16 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       heading5: [
-        "18px",
+        "32px",
         {
-          lineHeight: "24px",
+          lineHeight: "120%",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0",
+          fontFamily: "Poppins"
         }
       ],
       heading6: [
@@ -143,7 +154,7 @@ export default {
         {
           lineHeight: "24px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       // Body ==> XL
@@ -152,7 +163,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "400",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-xl-500": [
@@ -160,7 +171,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
 
@@ -169,7 +180,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
 
@@ -179,7 +190,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "400",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-lg-500": [
@@ -187,7 +198,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-lg-600": [
@@ -195,7 +206,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-md-400": [
@@ -203,7 +214,7 @@ export default {
         {
           lineHeight: "24px",
           fontWeight: "400",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-md-500": [
@@ -211,7 +222,7 @@ export default {
         {
           lineHeight: "24px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-md-600": [
@@ -219,7 +230,7 @@ export default {
         {
           lineHeight: "24px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
 
@@ -229,7 +240,7 @@ export default {
         {
           lineHeight: "20px",
           fontWeight: "400",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-sm-500": [
@@ -237,7 +248,7 @@ export default {
         {
           lineHeight: "20px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-sm-600": [
@@ -245,7 +256,7 @@ export default {
         {
           lineHeight: "20px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       // For Extra Small Screens
@@ -254,7 +265,7 @@ export default {
         {
           lineHeight: "16px",
           fontWeight: "400",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-xs-500": [
@@ -262,7 +273,7 @@ export default {
         {
           lineHeight: "16px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       "body-xs-600": [
@@ -270,7 +281,7 @@ export default {
         {
           lineHeight: "16px",
           fontWeight: "600",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
 
@@ -280,7 +291,7 @@ export default {
         {
           lineHeight: "28px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       label2: [
@@ -288,7 +299,7 @@ export default {
         {
           lineHeight: "24px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       label3: [
@@ -296,7 +307,7 @@ export default {
         {
           lineHeight: "20px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       label4: [
@@ -304,7 +315,7 @@ export default {
         {
           lineHeight: "1.5rem",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       label5: [
@@ -312,7 +323,7 @@ export default {
         {
           lineHeight: "16px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ],
       label6: [
@@ -320,19 +331,19 @@ export default {
         {
           lineHeight: "8px",
           fontWeight: "500",
-          letterSpacing: "0%"
+          letterSpacing: "0"
         }
       ]
 
     },
 
     screens: {
-      xs: "350px",
-      sm: "480px",
+      xs: "400px",
+      sm: "640px",
       md: "768px",
-      lg: "976px",
-      xl: "1440px",
-      xxl: "1920px"
+      lg: "1024px",
+      xl: "1280px",
+      xxl: "1406px",
     },
 
     container: {

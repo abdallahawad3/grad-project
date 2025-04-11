@@ -1,10 +1,10 @@
-import Nav from "@/components/header/Nav";
+import Navbar from "@/components/header";
 import { Outlet } from "react-router-dom";
 
 const RootLayout = () => {
   return (
     <>
-      <Nav />
+      <Navbar />
       <Outlet />
     </>
   );

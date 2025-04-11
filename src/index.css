@@ -93,11 +93,16 @@
   }
 }
 
+.data-\[placeholder\]\:text-muted-foreground[data-placeholder] {
+  color: #fff !important;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    @apply font-poppins;
   }
 }
