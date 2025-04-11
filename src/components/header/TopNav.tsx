@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import Location from "../../images/MapPin.png";
 import { useState } from "react";
 
 function TopNav() {
@@ -15,7 +14,7 @@ function TopNav() {
   return (
     <div className="flex flex-col md:flex-row justify-between items-center bg-gray-800 px-4 py-2 font-poppins text-[#B3B3B3] text-[12px] gap-2 md:gap-0">
       <div className="flex items-center gap-2 text-center">
-        <FontAwesomeIcon icon={faLocationDot} />
+        <img src={Location} className="w-[12px]" />
         <span className="text-[11px] md:text-[12px] text-center">
           Store Location: Lincoln-344, Illinois, Chicago, USA
         </span>
