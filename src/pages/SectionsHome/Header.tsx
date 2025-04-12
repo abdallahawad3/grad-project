@@ -3,14 +3,17 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import ImageHome from "../images/fruits.png";
+import ImageHome from "../../images/fruits.png";
 
 export default function Header() {
   const totalSlides = 3;
   const currentSlide = 1;
 
   return (
-    <div className="relative w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0">
+    <div
+      className="relative  w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0"
+      style={{ height: "calc(100vh - 164px)" }}
+    >
       <div className="absolute left-4 top-1/2 -translate-y-1/2">
         <Button
           variant="ghost"
