@@ -1,5 +1,5 @@
 import DesktopHeader from "./DesktopHeader";
-import MobileHeader from "./MobileHeader";
+// import MobileHeader from "./MobileHeader";
 import TopNav from "./TopNav";
 
 const Navbar = () => {
@@ -7,7 +7,7 @@ const Navbar = () => {
     <header className="">
       <TopNav />
       <DesktopHeader />
-      <MobileHeader />
+      {/* <MobileHeader /> */}
     </header>
   );
 };
