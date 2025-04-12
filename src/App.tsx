@@ -28,6 +28,7 @@ import TrackOrder from "./pages/user/TrackOrders";
 import LoginPage from "./pages/auth/Login";
 import RegisterPage from "./pages/auth/Register";
 import { Toaster } from "@/components/ui/toaster";
+import { AppRoutes } from "./enums";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -36,12 +37,12 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="contact" element={<ContactPage />} />
-          <Route path="shop" element={<ShopPage />} />
-          <Route path="product/:id" element={<ProductPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="login" element={<RegisterPage />} />
+          <Route path={AppRoutes.ABOUT} element={<AboutPage />} />
+          <Route path={AppRoutes.CONTACT} element={<ContactPage />} />
+          <Route path={AppRoutes.PRODUCTS} element={<ShopPage />} />
+          <Route path={AppRoutes.PRODUCT} element={<ProductPage />} />
+          <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+          <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
         </Route>
 
         {/* Admin Layout */}
