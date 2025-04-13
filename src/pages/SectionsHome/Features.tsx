@@ -35,8 +35,8 @@ export default function Featured() {
 
   return (
     <section className="pt-6 font-poppins px-4 sm:px-0 z-50">
-      <div className="container mx-auto overflow-hidden rounded-md border border-[#DAE5DA]">
-        <div className="shadow-sm rounded-lg overflow-hidden">
+      <div className="container mx-auto overflow-hidden rounded-md border border-[#DAE5DA] relative translate-y-[50%]">
+        <div className="shadow-sm rounded-lg overflow-hidden ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#DAE5DA]">
             {features.map((feature, index) => (
               <div
