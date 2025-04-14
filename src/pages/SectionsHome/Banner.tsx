@@ -1,6 +1,3 @@
-"use client";
-
-// import { cn } from "@/lib/utils";
 import ImageBanner1 from "../../images/BannerImage1.png";
 import ImageBanner2 from "../../images/BannerImage2.png";
 import ImageBanner3 from "../../images/BannerImage3.png";
