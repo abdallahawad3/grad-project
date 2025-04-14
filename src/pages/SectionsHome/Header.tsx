@@ -10,7 +10,7 @@ export default function Header() {
   const currentSlide = 1;
 
   return (
-    <div>
+    <div className="relative">
       <div className="relative w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0 mb-20 h-[calc(100vh-120px)] md:h-[calc(100vh-164px)]">
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
           <Button
