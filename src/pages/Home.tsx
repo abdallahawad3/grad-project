@@ -15,7 +15,10 @@ export default function HomePage() {
     <main className="container">
       <Header />
       <Features />
-      <ProductList />
+
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <ProductList />
+      </div>
       <Banner />
       <BestDeal />
       <FeaturedProducts />

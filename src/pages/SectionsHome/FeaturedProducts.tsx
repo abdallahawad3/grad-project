@@ -9,7 +9,10 @@ export function FeaturedProducts() {
             Featured Products
           </h1>
         </div>
-        <ProductList />
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <ProductList />
+        </div>
       </div>
     </section>
   );

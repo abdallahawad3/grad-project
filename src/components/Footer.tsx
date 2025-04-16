@@ -88,10 +88,10 @@ const FooterItem = ({ items, title }: { title: string; items: string[] }) => {
       <li className="text-body-md-400 md:text-body-lg-400 lg:text-body-xl-500">
         {title}
       </li>
-      {items.map((item) => (
+      {items.map((item, idx) => (
         <li
           className="cursor-pointer hover:text-white text-body-sm-400 text-gray-400"
-          key={item}
+          key={idx}
         >
           {item}
         </li>
