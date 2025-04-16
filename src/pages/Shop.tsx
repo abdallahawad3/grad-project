@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Contact from "./SectionsHome/Contact";
 
 const ShopPage = () => {
   return (
@@ -55,6 +56,9 @@ const ShopPage = () => {
             <ProductList />
           </div>
         </section>
+      </div>
+      <div className="pb-2 pt-24">
+        <Contact />
       </div>
     </main>
     // </main>

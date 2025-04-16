@@ -8,7 +8,11 @@ import { Button } from "../ui/button";
 import { Menu, Search } from "lucide-react";
 import BottomHeader from "./BottomHeader";
 import UserMenu from "./UserMenu";
+import { useAppDispatch } from "@/app/hooks";
+import { openCart } from "@/app/features/Cart/cartSlice";
 const DesktopHeader = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <div
       className="
@@ -54,6 +58,9 @@ const DesktopHeader = () => {
               </Link>
             </button>
             <button
+              onClick={() => {
+                dispatch(openCart());
+              }}
               aria-label="Cart"
               className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
             >

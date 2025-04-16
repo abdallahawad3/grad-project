@@ -29,6 +29,7 @@ import LoginPage from "./pages/auth/Login";
 import RegisterPage from "./pages/auth/Register";
 import { Toaster } from "@/components/ui/toaster";
 import { AppRoutes } from "./enums";
+import CartDrawer from "./components/Drawer/CartDrawer";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -72,6 +73,7 @@ const App = () => {
 
   return (
     <>
+      <CartDrawer />
       <RouterProvider router={router} />
       <Toaster />
     </>

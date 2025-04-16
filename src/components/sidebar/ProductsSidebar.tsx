@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Checkbox } from "../ui/checkbox";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { Slider } from "../ui/slider";
+import { SliderTrack } from "@radix-ui/react-slider";
 
 const contentVariants = {
   open: {
@@ -36,7 +37,7 @@ const ProductsSidebar = () => {
   const [shouldRender2, setShouldRender2] = useState(false);
   const [shouldRender3, setShouldRender3] = useState(false);
   const [shouldRender4, setShouldRender4] = useState(false);
-  const [price, setPrice] = useState(10);
+  const [priceRange, setPriceRange] = useState([50, 300]);
 
   useEffect(() => {
     if (isOpen3) {
@@ -144,14 +145,31 @@ const ProductsSidebar = () => {
                   exit="closed"
                   className="overflow-hidden"
                 >
-                  <p className="my-3">${price}</p>
-                  <Slider
-                    defaultValue={[10]}
-                    max={500}
-                    onValueChange={(e) => {
-                      setPrice(e[0]);
-                    }}
-                  />
+                  {" "}
+                  <div className="flex justify-between my-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-full bg-blue-500" />
+                      <span>Min: {priceRange[0]}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-full bg-blue-500" />
+                      <span>Max: {priceRange[1]}</span>
+                    </div>
+                  </div>
+                  <div className="my-2">
+                    <Slider
+                      orientation="horizontal"
+                      value={priceRange}
+                      min={50}
+                      max={500}
+                      step={1}
+                      onValueChange={(value) => setPriceRange(value)}
+                      className="w-full"
+                    >
+                      <SliderTrack className="w-5 h-5 rounded-full bg-blue-500 border border-white shadow focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                      <SliderTrack className="w-5 h-5 rounded-full bg-blue-500 border border-white shadow focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                    </Slider>
+                  </div>
                 </motion.div>
               </CollapsibleContent>
             )}
