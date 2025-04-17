@@ -31,10 +31,10 @@ export default function BestDeal() {
             Our Special Products Deal of the Month
           </h1>
 
-          <div className="flex justify-center gap-4 text-center mt-4">
+          <div className="flex justify-center gap-2 text-center mt-4">
             {Object.entries(timeLeft).map(([unit, value], index, array) => (
               <div key={unit} className="flex items-center gap-2">
-                <div className="flex flex-col items-center bg-[white] p-4 rounded-lg w-[96px]">
+                <div className="flex flex-col items-center bg-[white] p-2 rounded-lg  w-[70px] sm:w-[96px]">
                   <div className="text-[32px] font-normal text-[#00B207]">
                     {value}
                   </div>

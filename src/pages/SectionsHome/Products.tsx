@@ -12,8 +12,8 @@ export function Products() {
   ];
 
   return (
-    <section className="py-12 bg-[#EDF2EE] mx-auto px-4 font-poppins">
-      <div className="container relative pt-[150px] ">
+    <section className="py-12  bg-[#EDF2EE] mx-auto px-4 font-poppins">
+      <div className="container relative pt-[180px] sm:pt-20 ">
         <div className="text-center my-5">
           <h1 className="text-[40px] font-semibold tracking-tight sm:text-4xl">
             Introducing Our Products

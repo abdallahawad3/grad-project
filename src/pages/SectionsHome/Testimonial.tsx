@@ -20,7 +20,7 @@ export default function Testimonial() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
           {persons.map((person, index) => (
             <div key={index} className="flex flex-col items-center">
-              <div className="relative w-[424px] bg-[#fff] p-6 rounded-lg text-center">
+              <div className="relative  bg-[#fff] p-6 rounded-lg text-center">
                 <div className="mb-4 flex justify-center">
                   <img src={Quote} alt="Quote Icon" className="w-[40px]" />
                 </div>

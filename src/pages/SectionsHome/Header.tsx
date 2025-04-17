@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -8,24 +7,15 @@ import ImageHome from "../../images/fruits.png";
 
 export default function Header() {
   const totalSlides = 3;
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
+  const currentSlide = 1;
 
   return (
-    <div>
-      <div className="relative w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0 mb-20 h-[calc(100vh-120px)] md:h-[calc(100vh-164px)]">
+    <div className="relative">
+      <div className="relative w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0  h-[calc(100vh-120px)] md:h-[calc(100vh-164px)]">
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
           <Button
             variant="ghost"
             size="icon"
-            onClick={handlePrev}
             className="rounded-full border-[1px] border-[#DAE5DA] bg-white/80 shadow-md hover:bg-white/80"
           >
             <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />
@@ -36,7 +26,6 @@ export default function Header() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={handleNext}
             className="rounded-full border-[1px] border-[#DAE5DA] bg-white/80 shadow-md hover:bg-white/80"
           >
             <ArrowRight className="w-4 h-4 md:w-6 md:h-6" />
