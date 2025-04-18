@@ -1,8 +1,8 @@
 import logo from "@/assets/imgs/Logo.png";
 
-export default function Contact() {
+export default function Contact({ backgroundColor = "#EDF2EE" }) {
   return (
-    <section className="py-12 bg-[#EDF2EE]">
+    <section className="py-12 " style={{ backgroundColor }}>
       <div className=" container mx-auto px-4 sm:px-6 lg:px-8 font-poppins flex flex-col md:flex-row items-center justify-between gap-6 ">
         <div className="flex-shrink-0">
           <img

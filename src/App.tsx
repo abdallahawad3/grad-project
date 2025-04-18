@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import RootLayout from "./layouts";
 import HomePage from "./pages/Home";
-import AboutPage from "./pages/About";
-import ContactPage from "./pages/Contact";
+import About from "./pages/About";
+import ContactPage from "./pages/ContactPage";
 import ShopPage from "./pages/Shop";
 import ProductPage from "./pages/Product";
 import AdminLayout from "./layouts/AdminLayout";
@@ -38,7 +38,7 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
-          <Route path={AppRoutes.ABOUT} element={<AboutPage />} />
+          <Route path={AppRoutes.ABOUT} element={<About />} />
           <Route path={AppRoutes.CONTACT} element={<ContactPage />} />
           <Route path={AppRoutes.PRODUCTS} element={<ShopPage />} />
           <Route path={AppRoutes.PRODUCT} element={<ProductPage />} />
