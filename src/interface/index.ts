@@ -10,3 +10,19 @@ export interface IProduct {
   image: string;
   rating: number;
 }
+
+export interface IFormItemForCheckout {
+  label: string;
+  name:
+    | "firstname"
+    | "lastname"
+    | "companyName"
+    | "email"
+    | "phone"
+    | "country"
+    | "state"
+    | "zip";
+
+  placeholder: string;
+  type: string;
+}

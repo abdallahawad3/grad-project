@@ -8,4 +8,5 @@ export enum AppRoutes {
   REGISTER = "/register",
   CART = "/cart",
   WISH_LIST = "/wishlist",
+  CHECKOUT = "/checkout",
 }

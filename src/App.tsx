@@ -31,6 +31,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { AppRoutes } from "./enums";
 import CartDrawer from "./components/Drawer/CartDrawer";
 import ShoppingCart from "./pages/user/ShoppingCart";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -47,6 +48,7 @@ const App = () => {
           <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
           <Route path={AppRoutes.WISH_LIST} element={<Wishlist />} />
           <Route path={AppRoutes.CART} element={<ShoppingCart />} />
+          <Route path={AppRoutes.CHECKOUT} element={<Checkout />} />
         </Route>
 
         {/* Admin Layout */}
