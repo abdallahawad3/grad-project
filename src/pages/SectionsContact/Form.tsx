@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -25,23 +25,23 @@ const ContactPage = () => {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    const isMessageValid = validateMessage(message);
+  //   const isMessageValid = validateMessage(message);
 
-    if (isMessageValid) {
-      console.log({ name, email, subject, message });
-      toast.success("Message sent successfully!");
+  //   if (isMessageValid) {
+  //     console.log({ name, email, subject, message });
+  //     toast.success("Message sent successfully!");
 
-      setName("");
-      setEmail("");
-      setSubject("");
-      setMessage("");
-    } else {
-      toast.error(messageError || "Please fix the errors before submitting");
-    }
-  };
+  //     setName("");
+  //     setEmail("");
+  //     setSubject("");
+  //     setMessage("");
+  //   } else {
+  //     toast.error(messageError || "Please fix the errors before submitting");
+  //   }
+  // };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50  p-4">
@@ -89,7 +89,7 @@ const ContactPage = () => {
               Fill in the form and we'll get back to you shortly.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Template Cookie</p>
