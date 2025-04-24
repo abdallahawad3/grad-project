@@ -44,6 +44,7 @@ const App = () => {
           <Route path={AppRoutes.PRODUCT} element={<ProductPage />} />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
           <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
+          <Route path={AppRoutes.WISH_LIST} element={<Wishlist />} />
         </Route>
 
         {/* Admin Layout */}
