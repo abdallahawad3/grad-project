@@ -22,7 +22,7 @@ import UserLayout from "./layouts/UserLayout";
 import UserHomePage from "./pages/user";
 import OrdersHistory from "./pages/user/Orders";
 import Addresses from "./pages/user/Addresses";
-import { Settings, ShoppingCart } from "lucide-react";
+import { Settings } from "lucide-react";
 import Wishlist from "./pages/user/Wishlist";
 import TrackOrder from "./pages/user/TrackOrders";
 import LoginPage from "./pages/auth/Login";
@@ -30,6 +30,7 @@ import RegisterPage from "./pages/auth/Register";
 import { Toaster } from "@/components/ui/toaster";
 import { AppRoutes } from "./enums";
 import CartDrawer from "./components/Drawer/CartDrawer";
+import ShoppingCart from "./pages/user/ShoppingCart";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -45,6 +46,7 @@ const App = () => {
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
           <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
           <Route path={AppRoutes.WISH_LIST} element={<Wishlist />} />
+          <Route path={AppRoutes.CART} element={<ShoppingCart />} />
         </Route>
 
         {/* Admin Layout */}
