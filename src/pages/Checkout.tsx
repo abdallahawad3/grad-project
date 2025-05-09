@@ -1,4 +1,5 @@
 import CheckoutForm from "@/components/Checkout/CheckoutForm";
+import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import type { CHECKOUT_VALIDATION } from "@/validation";
 import type { z } from "zod";
@@ -21,7 +22,10 @@ const Checkout = () => {
       {/* Form For Checkout */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-[.75]">
-          <CheckoutForm onSubmit={onSubmit} />
+          <CheckoutForm
+            onSubmit={onSubmit}
+            children={<Button type="submit">Submit</Button>}
+          />
         </div>
         <div className="flex-[.25]">
           <div className="bg-white shadow-md rounded-lg p-4">

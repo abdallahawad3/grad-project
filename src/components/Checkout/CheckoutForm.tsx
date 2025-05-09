@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,12 +14,14 @@ import { Input } from "@/components/ui/input";
 import { CheckoutFormData } from "@/data";
 import Divider from "../ui/Divider";
 import { CHECKOUT_VALIDATION } from "@/validation";
+import type { ReactNode } from "react";
 
 interface CheckoutFormProps {
   onSubmit: (data: z.infer<typeof CHECKOUT_VALIDATION>) => void;
+  children: ReactNode;
 }
 
-const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
+const CheckoutForm = ({ onSubmit, children }: CheckoutFormProps) => {
   const form = useForm<z.infer<typeof CHECKOUT_VALIDATION>>({
     resolver: zodResolver(CHECKOUT_VALIDATION),
     defaultValues: {
@@ -55,7 +56,7 @@ const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="w-[100%] py-5 focus:border-[#0A947C] focus-visible:ring-0"
+                      className="w-[100%] py-5 outline-none border-[1px] focus:border-[#0A947C] focus-visible:ring-0"
                       placeholder={item.placeholder}
                       type={item.type}
                       {...field}
@@ -126,7 +127,7 @@ const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
         </div>
 
         <Divider />
-        <Button type="submit">Submit</Button>
+        {children}
       </form>
     </Form>
   );
