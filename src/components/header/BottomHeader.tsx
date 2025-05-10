@@ -6,7 +6,6 @@ const BottomHeader = () => {
   const location = useLocation();
   const currenPage = location.pathname.split("/")[1].toLocaleLowerCase();
 
-  console.log(currenPage);
   return (
     <div className="bg-gray-50 hidden md:block">
       <div className="container">

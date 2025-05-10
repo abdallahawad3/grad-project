@@ -1,5 +1,6 @@
 import { AppRoutes } from "@/enums";
 import type { IFormItemForCheckout, IPage } from "@/interface";
+import { Package, Percent, ShoppingCart, Tag, Tags } from "lucide-react";
 
 export const HomePages: IPage[] = [
   { PageURL: AppRoutes.HOME, title: "Home" },
@@ -56,5 +57,33 @@ export const CheckoutFormData: IFormItemForCheckout[] = [
     name: "zip",
     placeholder: "12345",
     type: "text",
+  },
+];
+
+export const ADMIN_PAGES = [
+  {
+    name: "Products",
+    icon: Package,
+    url: `${AppRoutes.PRODUCTS}`,
+  },
+  {
+    name: "Brands",
+    icon: Tags,
+    url: AppRoutes.BRANDS,
+  },
+  {
+    name: "Categories",
+    icon: Tag,
+    url: AppRoutes.CATEGORIES,
+  },
+  {
+    name: "Coupons",
+    icon: Percent,
+    url: AppRoutes.COUPONS,
+  },
+  {
+    name: "Orders",
+    icon: ShoppingCart,
+    url: AppRoutes.ORDERS,
   },
 ];

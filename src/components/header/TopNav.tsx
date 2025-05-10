@@ -61,7 +61,7 @@ function TopNav() {
           <div className="hidden md:block text-gray-500">|</div>
 
           <div className="flex items-center gap-1 text-xs md:text-sm">
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/register">Sign Up</Link>
             <span className="mx-1">/</span>
             {!role ? (
               <Link to="/login">Sign In</Link>

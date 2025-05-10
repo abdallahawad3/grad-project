@@ -1,5 +1,26 @@
 import { z } from "zod";
 
+export const REGISTER_SCHEMA = z
+  .object({
+    name: z
+      .string({ message: "The Name Filde Is Required" })
+      .min(3, { message: "The mini character is 3 " }),
+    email: z.string().email({ message: "enter valid email" }),
+    password: z
+      .string()
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
+        message:
+          "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.",
+      }),
+    passwordConfirm: z.string().min(8, {
+      message: "Confirm Password must be at least 8 characters.",
+    }),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords don't match",
+    path: ["passwordConfirm"],
+  });
+
 export const CHECKOUT_VALIDATION = z.object({
   firstname: z.string().min(2, {
     message: "Firstname must be at least 2 characters.",

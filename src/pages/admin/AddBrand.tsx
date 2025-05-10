@@ -1,5 +1,5 @@
-const AddBrand = () => {
+const ManageBrands = () => {
   return <div>AddBrand</div>;
 };
 
-export default AddBrand;
+export default ManageBrands;

@@ -12,10 +12,8 @@ import ShopPage from "./pages/Shop";
 import ProductPage from "./pages/Product";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import AddProduct from "./pages/admin/AddProduct";
-import AddBrand from "./pages/admin/AddBrand";
-import AddCategory from "./pages/admin/AddCategory";
-import AddSubCategory from "./pages/admin/AddSubCategory";
+import ManageBrands from "./pages/admin/AddBrand";
+import ManageCategories from "./pages/admin/AddCategory";
 import Coupon from "./pages/admin/Coupon";
 import Orders from "./pages/admin/Orders";
 import UserLayout from "./layouts/UserLayout";
@@ -32,8 +30,15 @@ import { AppRoutes } from "./enums";
 import CartDrawer from "./components/Drawer/CartDrawer";
 import ShoppingCart from "./pages/user/ShoppingCart";
 import Checkout from "./pages/Checkout";
+import ManageProducts from "./pages/admin/ManageProducts/ManageProducts";
+import { useAppSelector } from "./app/hooks";
+import type { RootState } from "./app/store";
+import ProtectedRoute from "./components/Auth/ProtectedRoutes";
 
 const App = () => {
+  const { isAuthenticated, role } = useAppSelector(
+    (state: RootState) => state.auth
+  );
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -44,26 +49,99 @@ const App = () => {
           <Route path={AppRoutes.CONTACT} element={<ContactPage />} />
           <Route path={AppRoutes.PRODUCTS} element={<ShopPage />} />
           <Route path={AppRoutes.PRODUCT} element={<ProductPage />} />
-          <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-          <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
-          <Route path={AppRoutes.WISH_LIST} element={<Wishlist />} />
-          <Route path={AppRoutes.CART} element={<ShoppingCart />} />
-          <Route path={AppRoutes.CHECKOUT} element={<Checkout />} />
+          <Route
+            path={AppRoutes.LOGIN}
+            element={
+              <ProtectedRoute
+                isAuthenticated={!isAuthenticated}
+                redirectPath={AppRoutes.HOME}
+              >
+                <LoginPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoutes.REGISTER}
+            element={
+              <ProtectedRoute
+                isAuthenticated={!isAuthenticated}
+                redirectPath={AppRoutes.HOME}
+              >
+                <RegisterPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoutes.WISH_LIST}
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAuthenticated={isAuthenticated}
+              >
+                <Wishlist />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoutes.CART}
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAuthenticated={isAuthenticated}
+              >
+                <ShoppingCart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoutes.CHECKOUT}
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAuthenticated={isAuthenticated}
+              >
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         {/* Admin Layout */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              userRole={role}
+              allowedRoles={["admin"]}
+              redirectPath="/"
+            >
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<AdminDashboard />} />
-          <Route path="add-product" element={<AddProduct />} />
-          <Route path="add-brand" element={<AddBrand />} />
-          <Route path="add-category" element={<AddCategory />} />
-          <Route path="add-subcategory" element={<AddSubCategory />} />
-          <Route path="add-coupon" element={<Coupon />} />
-          <Route path="all-orders" element={<Orders />} />
+          <Route path="products" element={<ManageProducts />} />
+          <Route path="brands" element={<ManageBrands />} />
+          <Route path="categories" element={<ManageCategories />} />
+          <Route path="coupons" element={<Coupon />} />
+          <Route path="orders" element={<Orders />} />
         </Route>
 
         {/* User Layout */}
-        <Route path="/user" element={<UserLayout />}>
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              userRole={role}
+              allowedRoles={["user"]}
+              redirectPath="/"
+            >
+              <UserLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<UserHomePage />} />
           <Route path="orders" element={<OrdersHistory />} />
           <Route path="address" element={<Addresses />} />

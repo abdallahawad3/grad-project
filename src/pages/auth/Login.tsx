@@ -15,9 +15,12 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { loginUser } from "@/app/features/AuthSlice";
 import type { RootState } from "@/app/store";
 import Loading from "@/miscellaneous/Loading";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 const LoginPage = () => {
-  const { loading } = useAppSelector((state: RootState) => state.auth);
+  const { loading, error } = useAppSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch();
   const FormSchema = z.object({
     email: z.string().min(1, {
@@ -27,6 +30,8 @@ const LoginPage = () => {
       message: "Password must be at least 8 characters.",
     }),
   });
+
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -37,11 +42,58 @@ const LoginPage = () => {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     dispatch(loginUser(data));
+    // if (error) {
+    //   toast({
+    //     title: "Error",
+    //     description: error,
+    //     variant: "destructive",
+    //   });
+    // }
   }
 
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: "Error",
+        description: error,
+        variant: "destructive",
+        duration: 2000,
+        style: {
+          backgroundColor: "#f8d7da",
+          color: "#721c24",
+          borderColor: "#f5c6cb",
+          position: "fixed",
+          top: "10px",
+          right: "10px",
+          zIndex: 9999,
+          width: "300px",
+        },
+      });
+    } else if (!error && !loading) {
+      toast({
+        title: "Success",
+        description: "Login successful",
+        variant: "default",
+        duration: 2000,
+        style: {
+          backgroundColor: "#d4edda",
+          color: "#155724",
+          borderColor: "#c3e6cb",
+          position: "fixed",
+          top: "10px",
+          right: "10px",
+          zIndex: 9999,
+          width: "300px",
+        },
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+  }, [error, navigate, loading]);
   return (
     <Form {...form}>
-      <div className="h-screen md:-mt-14 flex items-center justify-center bg-slate-950 p-4">
+      <div className="register h-screen md:-mt-14 flex items-center justify-center bg-slate-950 p-4">
         <div
           className="
           
@@ -112,6 +164,17 @@ const LoginPage = () => {
               {loading ? <Loading /> : "Login"}
             </Button>
           </form>
+          <div>
+            <p className="text-center text-sm text-gray-500">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="font-semibold text-[#0A947C] hover:text-[#087866]"
+              >
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </Form>

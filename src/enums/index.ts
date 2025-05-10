@@ -1,6 +1,7 @@
 export enum AppRoutes {
   HOME = "/",
   ABOUT = "/about",
+  CATEGORIES = "/categories",
   CONTACT = "/contact",
   PRODUCTS = "/products",
   PRODUCT = "/products/:id",
@@ -9,4 +10,7 @@ export enum AppRoutes {
   CART = "/cart",
   WISH_LIST = "/wishlist",
   CHECKOUT = "/checkout",
+  BRANDS = "/brands",
+  COUPONS = "/coupons",
+  ORDERS = "/orders",
 }

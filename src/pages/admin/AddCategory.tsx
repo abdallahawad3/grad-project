@@ -1,5 +1,5 @@
-const AddCategory = () => {
-  return <div>AddCategory</div>;
+const ManageCategories = () => {
+  return <div>ManageCategories</div>;
 };
 
-export default AddCategory;
+export default ManageCategories;

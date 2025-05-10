@@ -158,3 +158,16 @@
   box-shadow: 0 0 0 2px #00b207; /* Custom focus ring */
   color: #00b207;
 }
+
+.sidebar {
+  top: 21.2%;
+}
+.min-h-svh {
+  min-height: fit-content !important;
+}
+.register {
+  background-image: url("/images/login.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
