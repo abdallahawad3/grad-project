@@ -1,9 +1,16 @@
-const Divider = ({ dividerColor }: { dividerColor?: string }) => {
+const Divider = ({
+  dividerColor,
+  height = "1px",
+}: {
+  dividerColor?: string;
+  height?: string;
+}) => {
   return (
     <div
-      className="w-full h-[1px]  my-4"
+      className="w-full  my-4"
       style={{
         backgroundColor: dividerColor || "#E5E7EB",
+        height: height,
       }}
     />
   );

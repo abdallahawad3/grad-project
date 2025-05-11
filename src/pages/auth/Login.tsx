@@ -42,13 +42,27 @@ const LoginPage = () => {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     dispatch(loginUser(data));
-    // if (error) {
-    //   toast({
-    //     title: "Error",
-    //     description: error,
-    //     variant: "destructive",
-    //   });
-    // }
+    if (!error) {
+      toast({
+        title: "Success",
+        description: "Login successful",
+        variant: "default",
+        duration: 2000,
+        style: {
+          backgroundColor: "#d4edda",
+          color: "#155724",
+          borderColor: "#c3e6cb",
+          position: "fixed",
+          top: "10px",
+          right: "10px",
+          zIndex: 9999,
+          width: "300px",
+        },
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
   }
 
   useEffect(() => {
@@ -69,26 +83,6 @@ const LoginPage = () => {
           width: "300px",
         },
       });
-    } else if (!error && !loading) {
-      toast({
-        title: "Success",
-        description: "Login successful",
-        variant: "default",
-        duration: 2000,
-        style: {
-          backgroundColor: "#d4edda",
-          color: "#155724",
-          borderColor: "#c3e6cb",
-          position: "fixed",
-          top: "10px",
-          right: "10px",
-          zIndex: 9999,
-          width: "300px",
-        },
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
     }
   }, [error, navigate, loading]);
   return (

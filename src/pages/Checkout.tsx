@@ -15,7 +15,6 @@ const Checkout = () => {
       },
       duration: 2000,
     });
-    console.log(data);
   }
   return (
     <section className="container mx-auto py-10 px-4">

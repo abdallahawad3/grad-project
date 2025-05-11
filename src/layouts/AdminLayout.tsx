@@ -1,20 +1,33 @@
-import { useAppSelector } from "@/app/hooks";
-import type { RootState } from "@/app/store";
 import Navbar from "@/components/header";
 import { AppSidebar } from "@/components/SidebarLayout/LayoutSideBar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
-  const { open } = useAppSelector((state: RootState) => state.sidebar);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       <Navbar />
       <SidebarProvider>
-        <div className="flex w-[98%] gap20">
+        <div className="container mt-10 flex w-[98%] gap-5">
           <AppSidebar />
           <main className="mt-5 flex-1 mx-auto">
-            {!open && <SidebarTrigger />}
+            {isMobile && <SidebarTrigger />}
             <Outlet />
           </main>
         </div>

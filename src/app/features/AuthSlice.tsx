@@ -117,7 +117,6 @@ export const authSlice = createSlice({
 
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = false;
-      console.log(action.payload);
       state.error =
         (
           action.payload as AxiosError<{
@@ -135,8 +134,6 @@ export const authSlice = createSlice({
       registerUser.fulfilled,
       (state, action: PayloadAction<UserState>) => {
         state.loading = false;
-        console.log("action.payload.data", action.payload.data);
-        console.log("action.payload.token", action.payload.token);
         state.data = action.payload.data;
         state.token = action.payload.token;
         state.error = null;

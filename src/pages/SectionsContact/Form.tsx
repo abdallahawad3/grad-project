@@ -25,24 +25,6 @@ const ContactPage = () => {
     return true;
   };
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   const isMessageValid = validateMessage(message);
-
-  //   if (isMessageValid) {
-  //     console.log({ name, email, subject, message });
-  //     toast.success("Message sent successfully!");
-
-  //     setName("");
-  //     setEmail("");
-  //     setSubject("");
-  //     setMessage("");
-  //   } else {
-  //     toast.error(messageError || "Please fix the errors before submitting");
-  //   }
-  // };
-
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50  p-4">
       <div className="max-w-6xl w-full flex flex-col md:flex-row bg-white rounded-xl  overflow-hidden container">

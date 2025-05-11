@@ -159,9 +159,9 @@
   color: #00b207;
 }
 
-.sidebar {
+/* .sidebar {
   top: 21.2%;
-}
+} */
 .min-h-svh {
   min-height: fit-content !important;
 }
@@ -170,4 +170,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+body {
+  /* pointer-events: all !important;/ */
 }

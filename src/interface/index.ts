@@ -26,6 +26,25 @@ export interface IFormItemForCheckout {
   placeholder: string;
   type: string;
 }
+
+// All Categories Interfaces
+
+export interface ICategory {
+  name: string;
+  image: File;
+}
+
+export interface ApiErrorResponse {
+  message: string;
+}
+export interface ICategoryResponse {
+  name: string;
+  image: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
 export interface CookieOptions {
   maxAge?: number;
   signed?: boolean;
