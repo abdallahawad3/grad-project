@@ -26,6 +26,11 @@ export const CATEGORY_SCHEMA = z.object({
     message: "The mini character is 3 ",
   }),
 });
+export const BRAND_SCHEMA = z.object({
+  name: z.string({ message: "The Name Filde Is Required" }).min(3, {
+    message: "The mini character is 3 ",
+  }),
+});
 
 export const CHECKOUT_VALIDATION = z.object({
   firstname: z.string().min(2, {

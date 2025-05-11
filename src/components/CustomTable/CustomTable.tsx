@@ -26,6 +26,7 @@ type CustomTableProps = {
   onDelete?: (row: Record<string, any>) => void;
   refetch: () => void;
   FormComponent: ComponentType<FormComponentProps>;
+  title?: string;
 };
 
 type FormComponentProps = {
@@ -43,6 +44,7 @@ const CustomTable = ({
   onDelete,
   refetch,
   FormComponent,
+  title,
 }: CustomTableProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<Record<string, any> | null>(
@@ -67,7 +69,7 @@ const CustomTable = ({
     <div className="p-4 border shadow-sm rounded-md">
       <div className="text-end mb-2">
         <Button onClick={handleAdd}>
-          Add Category <PlusIcon className="ml-2 h-4 w-4" />
+          {title ? title : "Add Category"} <PlusIcon className="ml-2 h-4 w-4" />
         </Button>
       </div>
       <Divider dividerColor="#0A947C" height="2px" />

@@ -3,3 +3,6 @@ const ManageProducts = () => {
 };
 
 export default ManageProducts;
+// Custom
+// From (Update - Delete)
+//

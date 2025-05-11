@@ -12,7 +12,7 @@ import ShopPage from "./pages/Shop";
 import ProductPage from "./pages/Product";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ManageBrands from "./pages/admin/AddBrand";
+import ManageBrands from "./pages/admin/ManageBrands/ManageBrands";
 import ManageCategories from "./pages/admin/ManageCategories/ManageCategories";
 import Coupon from "./pages/admin/Coupon";
 import Orders from "./pages/admin/Orders";
