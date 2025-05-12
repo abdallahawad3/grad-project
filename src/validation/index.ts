@@ -32,6 +32,15 @@ export const BRAND_SCHEMA = z.object({
   }),
 });
 
+export const SUB_CATEGORY_SCHEMA = z.object({
+  name: z.string({ message: "The Name Filde Is Required" }).min(3, {
+    message: "The mini character is 3 ",
+  }),
+  category: z.string({ message: "The Category Filde Is Required" }).min(1, {
+    message: "This field is required",
+  }),
+});
+
 export const CHECKOUT_VALIDATION = z.object({
   firstname: z.string().min(2, {
     message: "Firstname must be at least 2 characters.",

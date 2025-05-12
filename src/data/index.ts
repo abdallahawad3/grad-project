@@ -77,6 +77,11 @@ export const ADMIN_PAGES = [
     url: AppRoutes.CATEGORIES,
   },
   {
+    name: "Sub Categories",
+    url: AppRoutes.SUB_CATEGORIES,
+    icon: Tags,
+  },
+  {
     name: "Coupons",
     icon: Percent,
     url: AppRoutes.COUPONS,

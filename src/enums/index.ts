@@ -13,4 +13,5 @@ export enum AppRoutes {
   BRANDS = "/brands",
   COUPONS = "/coupons",
   ORDERS = "/orders",
+  SUB_CATEGORIES = "/subcategories",
 }

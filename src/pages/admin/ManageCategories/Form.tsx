@@ -64,7 +64,7 @@ const ManageCategoryForm = ({
   const { mutate: UpdateCategory } = useUpdateCategory();
   // If There are data
   useEffect(() => {
-    if (mode === "edit" && data) {
+    if (open && mode === "edit" && data) {
       form.setValue("name", data.name);
       if (data.image) {
         setImages([{ data_url: data.image, file: null as unknown as File }]);

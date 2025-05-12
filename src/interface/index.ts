@@ -42,7 +42,14 @@ export interface ICategory {
   name: string;
   image: File;
 }
-
+export interface ISubCategories {
+  _id: string;
+  name: string;
+  slug: string;
+  category: string;
+  createdAt: string;
+  updatedAt: string;
+}
 export interface ApiErrorResponse {
   message: string;
 }

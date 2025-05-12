@@ -34,6 +34,7 @@ import ManageProducts from "./pages/admin/ManageProducts/ManageProducts";
 import { useAppSelector } from "./app/hooks";
 import type { RootState } from "./app/store";
 import ProtectedRoute from "./components/Auth/ProtectedRoutes";
+import ManageSubCategories from "./pages/admin/ManageSubCategories/ManageSubCategories";
 
 const App = () => {
   const { isAuthenticated, role } = useAppSelector(
@@ -123,6 +124,7 @@ const App = () => {
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<ManageProducts />} />
           <Route path="brands" element={<ManageBrands />} />
+          <Route path="subcategories" element={<ManageSubCategories />} />
           <Route path="categories" element={<ManageCategories />} />
           <Route path="coupons" element={<Coupon />} />
           <Route path="orders" element={<Orders />} />
