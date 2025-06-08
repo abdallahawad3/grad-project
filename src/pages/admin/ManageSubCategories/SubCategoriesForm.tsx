@@ -183,7 +183,7 @@ const SubCategoriesForm = ({
 
             <div className="w-full">
               <MySelect
-                onValueChange={(value) => {
+                onValueChange={(value: any) => {
                   form.setValue("category", value);
                 }}
                 control={form.control}

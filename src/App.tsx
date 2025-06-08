@@ -14,7 +14,6 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageBrands from "./pages/admin/ManageBrands/ManageBrands";
 import ManageCategories from "./pages/admin/ManageCategories/ManageCategories";
-import Coupon from "./pages/admin/Coupon";
 import Orders from "./pages/admin/Orders";
 import UserLayout from "./layouts/UserLayout";
 import UserHomePage from "./pages/user";
@@ -35,6 +34,7 @@ import { useAppSelector } from "./app/hooks";
 import type { RootState } from "./app/store";
 import ProtectedRoute from "./components/Auth/ProtectedRoutes";
 import ManageSubCategories from "./pages/admin/ManageSubCategories/ManageSubCategories";
+import ManageCoupons from "./pages/admin/ManageCoupons/ManageCoupons";
 
 const App = () => {
   const { isAuthenticated, role } = useAppSelector(
@@ -126,7 +126,7 @@ const App = () => {
           <Route path="brands" element={<ManageBrands />} />
           <Route path="subcategories" element={<ManageSubCategories />} />
           <Route path="categories" element={<ManageCategories />} />
-          <Route path="coupons" element={<Coupon />} />
+          <Route path="coupons" element={<ManageCoupons />} />
           <Route path="orders" element={<Orders />} />
         </Route>
 
