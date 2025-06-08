@@ -5,8 +5,9 @@ interface ImageType {
   images: [];
   onChange: (imageList: any) => void;
   isMultiple: boolean;
+  title?: string;
 }
-const UploadImage = ({ images, onChange, isMultiple }: ImageType) => {
+const UploadImage = ({ images, onChange, isMultiple, title }: ImageType) => {
   const maxNumber = 69;
 
   return (
@@ -37,7 +38,9 @@ const UploadImage = ({ images, onChange, isMultiple }: ImageType) => {
                 onClick={onImageUpload}
                 {...dragProps}
               >
-                {isMultiple ? "Click or Drop Images" : "Click or Drop Image"}
+                {isMultiple
+                  ? `${title ? title : "Click or Drop Images"}`
+                  : `${title ? title : "Click or Drop Image"}`}
               </Button>
               {imageList.length > 1 && (
                 <Button

@@ -37,7 +37,7 @@ const ProductCard = ({ product }: IProps) => {
         {/* For Image */}
         <div>
           <img
-            src={product.image}
+            src={product.imageCover}
             alt="Product Image"
             className="w-full h-[245px] object-cover"
           />
@@ -45,7 +45,7 @@ const ProductCard = ({ product }: IProps) => {
         {/* For Content */}
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-gray-700 text-body-lg-400">{product.name}</h3>
+            <h3 className="text-gray-700 text-body-lg-400">{product.title}</h3>
             <p className="text-gray-900 text-body-xl-500">${product.price}</p>
             <div className="flex gap-[.5px] items-center mt-2">
               <Star size={20} />

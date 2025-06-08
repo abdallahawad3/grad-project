@@ -47,6 +47,7 @@
     "react-images-uploading": "^3.1.7",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.4.0",
+    "react-select": "^5.10.1",
     "react-simple-star-rating": "^5.1.7",
     "recharts": "^2.15.3",
     "shadcn": "^2.3.0",

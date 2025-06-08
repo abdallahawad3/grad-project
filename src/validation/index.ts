@@ -26,6 +26,33 @@ export const CATEGORY_SCHEMA = z.object({
     message: "The mini character is 3 ",
   }),
 });
+
+export const PRODUCT_SCHEMA = z.object({
+  title: z.string({ message: "The Title Filde Is Required" }).min(3, {
+    message: "The mini character is 3 ",
+  }),
+  description: z.string({ message: "The Description Filde Is Required" }),
+  quantity: z
+    .string({ message: "The Quantity Filde Is Required" })
+    .min(1, { message: "The mini character is 1" }),
+  price: z
+    .string({ message: "The Price Filde Is Required" })
+    .min(1, { message: "The mini character is 1" }),
+  availableColors: z
+    .array(z.string(), {
+      message: "The Available Colors Filde Is Required",
+    })
+    .min(1, { message: "The mini character is 1" })
+    .optional(),
+  category: z.string({ message: "The Category Filde Is Required" }).min(1, {
+    message: "This field is required",
+  }),
+  subcategory: z
+    .array(z.string(), { message: "The Subcategory Filde Is Required" })
+    .min(1, { message: "This field is required" })
+    .optional(),
+});
+
 export const BRAND_SCHEMA = z.object({
   name: z.string({ message: "The Name Filde Is Required" }).min(3, {
     message: "The mini character is 3 ",

@@ -20,7 +20,9 @@ import { toast } from "@/hooks/use-toast";
 import { useEffect } from "react";
 
 const LoginPage = () => {
-  const { loading, error } = useAppSelector((state: RootState) => state.auth);
+  const { loading, error, isAuthenticated } = useAppSelector(
+    (state: RootState) => state.auth
+  );
   const dispatch = useAppDispatch();
   const FormSchema = z.object({
     email: z.string().min(1, {
@@ -85,6 +87,12 @@ const LoginPage = () => {
       });
     }
   }, [error, navigate, loading]);
+
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
   return (
     <Form {...form}>
       <div className="register h-screen md:-mt-14 flex items-center justify-center bg-slate-950 p-4">

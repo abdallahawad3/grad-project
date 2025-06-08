@@ -4,11 +4,35 @@ export interface IPage {
 }
 
 export interface IProduct {
-  id: number;
-  name: string;
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  quantity: number;
+  sold: number;
   price: number;
-  image: string;
-  rating: number;
+  availableColors: string[];
+  imageCover: string;
+  images: string[];
+  category: string;
+  subcategory: string[];
+  ratingsQuantity: number;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+}
+
+export interface IAddProduct {
+  title: string;
+  description: string;
+  quantity: string;
+  sold?: number;
+  price: string;
+  availableColors?: string[];
+  imageCover: File | null;
+  images: File[] | null;
+  category: string;
+  subcategory?: string[];
 }
 
 export interface IBrand {
