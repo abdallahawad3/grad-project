@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { X } from "lucide-react";
+import { Link } from "react-router-dom";
 const ShoppingCart = () => {
   return (
     <section className="container py-20">
@@ -117,14 +118,18 @@ const ShoppingCart = () => {
                   </Button>
                 </TableCell>
               </TableRow>
-              <div className="py-5 px-2">
-                <Button
-                  variant={"outline"}
-                  className="mt-4 bg-gray-50 text-gray-700 shadow-none hover:bg-gray-50 hover:text-gray-700 py-[14px] px-[30px] rounded-full"
-                >
-                  Go To Shopping
-                </Button>
-              </div>
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <div className="py-5 px-2">
+                    <Button
+                      variant={"outline"}
+                      className="mt-4 bg-gray-50 text-gray-700 shadow-none hover:bg-gray-50 hover:text-gray-700 py-[14px] px-[30px] rounded-full"
+                    >
+                      <Link to={"/products"}>Go To Shopping</Link>
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
           <div className="flex items-center justify-between mt-4 gap-4 border rounded p-5">
