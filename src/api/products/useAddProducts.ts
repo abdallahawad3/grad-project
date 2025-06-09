@@ -33,6 +33,12 @@ export const AddProduct = async (
   formData.append("description", product.description);
   formData.append("quantity", product.quantity.toString());
   formData.append("price", product.price.toString());
+  if (product.priceAfterDiscount) {
+    formData.append(
+      "priceAfterDiscount",
+      product.priceAfterDiscount.toString()
+    );
+  }
   if (product.availableColors) {
     product.availableColors.forEach((color) => {
       formData.append("availableColors", color);
@@ -41,6 +47,11 @@ export const AddProduct = async (
   if (product.subcategory) {
     product.subcategory.forEach((sub) => {
       formData.append("subcategory", sub);
+    });
+  }
+  if (product.brand) {
+    product.brand.forEach((brand) => {
+      formData.append("brand", brand);
     });
   }
   if (product.imageCover) {

@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Thumb } from "./EmblaCarouselThumbsButton";
 
 type PropType = {
-  slides: { id: number; src: string }[];
+  slides: { id: number; src: string; alt: string }[];
   options?: EmblaOptionsType;
 };
 

@@ -1,7 +1,8 @@
 import { axiosInstance } from "@/config/axios.config";
+import type { IProduct } from "@/interface";
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 
-interface IProduct {
+interface IProducts {
   results: number;
   paginationResult: {
     currentPage: number;
@@ -11,13 +12,13 @@ interface IProduct {
   data: IProduct[];
 }
 
-const getAllProducts = async (): Promise<IProduct> => {
-  const { data } = await axiosInstance.get<IProduct>("/products");
+const getAllProducts = async (): Promise<IProducts> => {
+  const { data } = await axiosInstance.get<IProducts>("/products");
   return data;
 };
 
-const useGetAllProducts = (): UseQueryResult<IProduct> => {
-  const query = useQuery<IProduct>({
+const useGetAllProducts = (): UseQueryResult<IProducts> => {
+  const query = useQuery<IProducts>({
     queryKey: ["products"],
     queryFn: getAllProducts,
     refetchOnWindowFocus: false, // Optional: Prevent refetching on window focus

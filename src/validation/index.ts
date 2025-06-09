@@ -38,6 +38,10 @@ export const PRODUCT_SCHEMA = z.object({
   price: z
     .string({ message: "The Price Filde Is Required" })
     .min(1, { message: "The mini character is 1" }),
+  priceAfterDiscount: z
+    .string({ message: "The Price After Discount Filde Is Required" })
+    .min(1, { message: "The mini character is 1" })
+    .optional(),
   availableColors: z
     .array(z.string(), {
       message: "The Available Colors Filde Is Required",
@@ -50,6 +54,14 @@ export const PRODUCT_SCHEMA = z.object({
   subcategory: z
     .array(z.string(), { message: "The Subcategory Filde Is Required" })
     .min(1, { message: "This field is required" })
+    .optional(),
+  brand: z
+    .array(z.string(), {
+      message: "The Brand Filde Is Required",
+    })
+    .min(1, {
+      message: "This field is required",
+    })
     .optional(),
 });
 

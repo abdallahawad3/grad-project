@@ -2,10 +2,12 @@
 // import { Card, CardContent, CardHeader } from "@/components/ui/card";
 // import { Heart, Eye } from "lucide-react";
 
-import { Eye, Heart, ShoppingCart, Star } from "lucide-react";
+import { Eye, Heart, ShoppingCart } from "lucide-react";
 
 import { Button } from "../ui/button";
 import type { IProduct } from "@/interface";
+import { RatingComponent } from "../ui/Rating";
+import { Link } from "react-router-dom";
 
 interface IProps {
   product: IProduct;
@@ -48,12 +50,7 @@ const ProductCard = ({ product }: IProps) => {
             <h3 className="text-gray-700 text-body-lg-400">{product.title}</h3>
             <p className="text-gray-900 text-body-xl-500">${product.price}</p>
             <div className="flex gap-[.5px] items-center mt-2">
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
+              <RatingComponent isReadOnly ratingVal={4} />
             </div>
           </div>
           <Button
@@ -105,7 +102,9 @@ const ProductCard = ({ product }: IProps) => {
               className="w-12 h-12 border-none hover:bg-white relative focus:outline-none focus:ring-2 focus:ring-success-400 bg-white border-gray-50 rounded-full"
               aria-label="Show Details Of Product"
             >
-              <Eye size={20} color="#000" />
+              <Link to={`/products/${product._id}`}>
+                <Eye size={20} color="#000" />
+              </Link>
             </Button>
           </div>
         </div>

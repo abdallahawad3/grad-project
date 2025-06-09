@@ -1,16 +1,14 @@
 import { Button } from "@/components/ui/button";
 
 import ProductList from "@/components/products/ProductList";
+import useGetAllCategories from "@/api/categories/useGetAllCategories";
+import useGetAllProducts from "@/api/products/useGetAllProducts";
 
 export function Products() {
-  const categories = [
-    { name: "All", active: true },
-    { name: "Vegetables", active: false },
-    { name: "Fruit", active: false },
-    { name: "Meat & Fish", active: false },
-    { name: "View All", active: false },
-  ];
+  const { data } = useGetAllCategories();
 
+  const { data: productData } = useGetAllProducts();
+  const products = productData?.data ?? [];
   return (
     <section className="py-12  bg-[#EDF2EE] mx-auto px-4 font-poppins">
       <div className="container relative pt-[180px] sm:pt-20 ">
@@ -21,11 +19,12 @@ export function Products() {
         </div>
 
         <div className="flex flex-wrap justify-center mb-10">
-          {categories.map((category, index) => (
-            <div key={category.name} className="flex items-center">
-              <Button
-                variant="ghost"
-                className={`
+          {data?.data &&
+            data?.data.map((category, index) => (
+              <div key={category.name} className="flex items-center">
+                <Button
+                  variant="ghost"
+                  className={`
           bg-[#EDF2EE]
           ${
             index === 0
@@ -39,21 +38,18 @@ export function Products() {
           relative
           whitespace-nowrap
         `}
-              >
-                {category.name}
-                {index === 0 && (
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[calc(100%-24px)] h-[2px] bg-[#00B207]" />
-                )}
-              </Button>
-              {index < categories.length - 1 && (
-                <div className="h-4 w-px bg-gray-300 mx-2" />
-              )}
-            </div>
-          ))}
+                >
+                  {category.name}
+                  {index === 0 && (
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[calc(100%-24px)] h-[2px] bg-[#00B207]" />
+                  )}
+                </Button>
+              </div>
+            ))}
         </div>
         <div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            <ProductList />
+            <ProductList products={products} />
           </div>
         </div>
       </div>

@@ -1,13 +1,15 @@
 import { Badge } from "../ui/badge";
 import Divider from "../ui/Divider";
 import { RatingComponent } from "../ui/Rating";
-import brand from "../../assets/imgs/singleProduct1.jpg";
 import instgram from "../../assets/svg/instgram.svg";
 import twitter from "../../assets/svg/twitter.svg";
 import painterest from "../../assets/svg/painterest.svg";
 import cart from "../../assets/svg/Rectangle.svg";
 import heart from "../../assets/svg/heart.svg";
-const Details = () => {
+import type { IProduct } from "@/interface";
+const Details = ({ product }: { product: IProduct }) => {
+  if (!product) return;
+  console.log(product.price);
   return (
     <div>
       <div>
@@ -24,24 +26,26 @@ const Details = () => {
             <RatingComponent isReadOnly={true} ratingVal={1.75} />
             <p>
               <span className="text-body-sm-400 text-gray-600 underline">
-                1.75 Review
+                {product.ratingsQuantity} Review
               </span>
             </p>
           </div>
-          <div className="size-[5px] rounded-full bg-gray-300" />
-          <p className="text-body-sm-400 text-gray-600 underline">4 Sold</p>
         </div>
         <div>
           <p className="mt-4 flex gap-2 items-center">
             <span className="text-body-xl-500 line-through text-gray-400">
-              $48.00
+              ${product.price}
             </span>
-            <strong className="text-body-xl-500 !text-[24px] font-[600] text-[#0A947C]">
-              $17.28
-            </strong>
-            <Badge className="bg-[#EA4B481A] leading-3 py-1  px-2 rounded-[30px] text-primary-50 font-thin hover:bg-[#EA4B481A] hover:text-primary-50">
-              64% Off
-            </Badge>
+            {product.priceAfterDiscount && (
+              <>
+                <strong className="text-body-xl-500 !text-[24px] font-[600] text-[#0A947C]">
+                  ${product.priceAfterDiscount}
+                </strong>
+                <Badge className="bg-[#EA4B481A] leading-3 py-1  px-2 rounded-[30px] text-primary-50 font-thin hover:bg-[#EA4B481A] hover:text-primary-50">
+                  {(product.priceAfterDiscount / product.price) * 100} % Off
+                </Badge>
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -51,11 +55,6 @@ const Details = () => {
         <div className="flex flex-col md:flex-row gap-2 md:items-center">
           <div className="flex flex-1 gap-2 items-center">
             <p>Brand:</p>
-            <img
-              className="size-[50px] rounded-md object-fit-contain border-[.8px] border-[#FCF7AE] p-[.5px] overflow-hidden"
-              src={brand}
-              alt="Brand Name"
-            />
           </div>
           <div className="flex items-center gap-2">
             <p className="flex-1">Share item:</p>

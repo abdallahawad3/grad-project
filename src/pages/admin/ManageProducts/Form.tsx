@@ -41,6 +41,7 @@ import { useAddProduct } from "@/api/products/useAddProducts";
 import useUpdateProduct from "@/api/products/useUpdateProduct";
 import useGetSubCategories from "@/api/subcategories/useGetSubCategories";
 import { MySelect } from "@/components/resuable/MySelect";
+import useGetBrands from "@/api/brands/useGetBrands";
 
 const ManageProductForm = ({
   open,
@@ -56,6 +57,7 @@ const ManageProductForm = ({
     resolver: zodResolver(PRODUCT_SCHEMA),
     defaultValues: {
       availableColors: [],
+      brand: [],
       title: "",
       category: "",
       description: "",
@@ -101,6 +103,9 @@ const ManageProductForm = ({
         quantity: data.quantity.toString(),
         price: data.price.toString(),
         availableColors: colors || [],
+        priceAfterDiscount: data.priceAfterDiscount?.toString() || "",
+        subcategory: data.subcategory || [],
+        brand: data.brand || [],
       });
     }
   }, [data, mode, form]);
@@ -110,6 +115,7 @@ const ManageProductForm = ({
   const { mutate: updateProduct } = useUpdateProduct();
   const { data: categoryData } = useGetAllCategories();
   const { data: subCategoryData } = useGetSubCategories();
+  const { data: brandsData } = useGetBrands();
   // On Submit Handler //
   const onSubmit = async (data: z.infer<typeof PRODUCT_SCHEMA>) => {
     if (mode === "add") {
@@ -149,8 +155,10 @@ const ManageProductForm = ({
           description: data.description,
           quantity: data.quantity.toString(),
           price: data.price.toString(),
+          priceAfterDiscount: data.priceAfterDiscount?.toString(),
           availableColors: data.availableColors || undefined,
           subcategory: data.subcategory || [],
+          brand: data.brand || [],
         },
         {
           onSuccess: () => {
@@ -167,6 +175,8 @@ const ManageProductForm = ({
             setTimeout(() => {
               form.reset();
               setImages([]);
+              setImage([]);
+              setEditId(null);
               setOpen(false);
             }, 1000);
             refetch();
@@ -198,8 +208,10 @@ const ManageProductForm = ({
             description: data.description,
             quantity: data.quantity,
             price: data.price,
+            priceAfterDiscount: data.priceAfterDiscount?.toString(),
             availableColors: data.availableColors || undefined,
             subcategory: data.subcategory || [],
+            brand: data.brand || [],
           },
         },
         {
@@ -368,24 +380,6 @@ const ManageProductForm = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="quantity"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="Product Quantity"
-                        {...field}
-                        className="w-full"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
                 name="price"
                 render={({ field }) => (
                   <FormItem>
@@ -401,7 +395,58 @@ const ManageProductForm = ({
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="priceAfterDiscount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Price After Discount"
+                        {...field}
+                        className="w-full"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
+
+            <MySelect
+              control={form.control}
+              name="brand"
+              isMulti={true}
+              selectLabel="Brand"
+              selectPlaceholder="Select a brand"
+              data={
+                brandsData?.data?.map((brand: any) => ({
+                  value: brand._id,
+                  label: brand.name,
+                })) || []
+              }
+              onValueChange={(value: any) => {
+                form.setValue("brand", value);
+              }}
+            />
+            <FormField
+              control={form.control}
+              name="quantity"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="Product Quantity"
+                      {...field}
+                      className="w-full"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <UploadImage
               isMultiple={false}

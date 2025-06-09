@@ -30,11 +30,13 @@ const DesktopHeader = () => {
    "
       >
         <div>
-          <img
-            className="max-w-[100px] md:max-w-[150px]"
-            src={logo}
-            alt="Logo"
-          />
+          <Link to={AppRoutes.HOME}>
+            <img
+              className="max-w-[100px] md:max-w-[150px]"
+              src={logo}
+              alt="Logo"
+            />
+          </Link>
         </div>
         <div className="hidden md:flex flex-[.7] items-center border shadow rounded-md focus-visible:ring-1">
           <Search size={21} className="ml-2" />

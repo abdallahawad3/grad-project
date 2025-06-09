@@ -1,6 +1,9 @@
+import useGetAllProducts from "@/api/products/useGetAllProducts";
 import ProductList from "@/components/products/ProductList";
 
 export function FeaturedProducts() {
+  const { data: productData } = useGetAllProducts();
+  const products = productData?.data ?? [];
   return (
     <section className="py-12 bg-[white] font-poppins">
       <div className="container px-4 mx-auto">
@@ -11,7 +14,7 @@ export function FeaturedProducts() {
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          <ProductList />
+          <ProductList products={products} />
         </div>
       </div>
     </section>

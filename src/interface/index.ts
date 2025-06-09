@@ -11,6 +11,7 @@ export interface IProduct {
   quantity: number;
   sold: number;
   price: number;
+  priceAfterDiscount?: number;
   availableColors: string[];
   imageCover: string;
   images: string[];
@@ -28,11 +29,13 @@ export interface IAddProduct {
   quantity: string;
   sold?: number;
   price: string;
+  priceAfterDiscount?: string;
   availableColors?: string[];
   imageCover: File | null;
   images: File[] | null;
   category: string;
   subcategory?: string[];
+  brand?: string[];
 }
 
 export interface IBrand {

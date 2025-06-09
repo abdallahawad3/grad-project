@@ -13,8 +13,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Contact from "./SectionsHome/Contact";
+import useGetAllProducts from "@/api/products/useGetAllProducts";
 
 const ShopPage = () => {
+  const { data: productData } = useGetAllProducts();
+  const products = productData?.data ?? [];
   return (
     // <main className="flex flex-col gap-4 p-4 md:flex-row md:gap-8">
     <main className="container py-24">
@@ -53,7 +56,7 @@ const ShopPage = () => {
         <ProductsSidebar />
         <section>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <ProductList />
+            <ProductList products={products} />
           </div>
         </section>
       </div>
