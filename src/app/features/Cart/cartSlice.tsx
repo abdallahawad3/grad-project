@@ -7,6 +7,8 @@ const cartSlice = createSlice({
     totalQuantity: 0,
     totalAmount: 0,
     isOpen: false,
+    loading: false,
+    error: null,
   },
   reducers: {
     openCart: (state) => {

@@ -7,6 +7,7 @@ import painterest from "../../assets/svg/painterest.svg";
 import cart from "../../assets/svg/Rectangle.svg";
 import heart from "../../assets/svg/heart.svg";
 import type { IProduct } from "@/interface";
+import AddToCartDiv from "../resuable/AddToCartDiv";
 const Details = ({ product }: { product: IProduct }) => {
   if (!product) return;
   console.log(product.price);
@@ -92,19 +93,7 @@ const Details = ({ product }: { product: IProduct }) => {
       </div>
       <Divider />
       <div className="flex flex-col md:flex-row gap-2 md:items-center">
-        <div className="flex-[.18]">
-          <div className="flex flex-col gap-2">
-            <div className="flex gap-2  items-center justify-between p-2 border border-[#FCF7AE] h-[40px] rounded-full">
-              <button className="bg-[#FCF7AE] size-[30px] block rounded-full">
-                +
-              </button>
-              <span>1</span>
-              <button className="bg-[#FCF7AE] size-[30px] block rounded-full ">
-                -
-              </button>
-            </div>
-          </div>
-        </div>
+        <AddToCartDiv />
         <div className="flex-[.75] ">
           <button className="w-full bg-[#0A947C] text-white h-[40px] rounded-full flex items-center justify-center gap-2">
             <span>Add To Cart</span>

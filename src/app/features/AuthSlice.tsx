@@ -69,6 +69,9 @@ export const loginUser = createAsyncThunk(
       if (status === 200) {
         CookieServices.set("token", data.token, {});
         CookieServices.set("role", data.data.role, {});
+        CookieServices.set("user", JSON.stringify(data.data), {
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+        });
       }
       return data;
     } catch (error) {

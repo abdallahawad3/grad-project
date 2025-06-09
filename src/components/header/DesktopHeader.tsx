@@ -10,13 +10,25 @@ import BottomHeader from "./BottomHeader";
 import UserMenu from "./UserMenu";
 import { useAppDispatch } from "@/app/hooks";
 import { openCart } from "@/app/features/Cart/cartSlice";
+import useGetAllCart from "@/api/cart/useGetAllCart";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/app/store";
+import toast from "react-hot-toast";
 const DesktopHeader = () => {
   const dispatch = useAppDispatch();
-
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  // Get All Cart Items
+  const { data } = useGetAllCart();
+  const [numOfCartItems, setNumOfCartItems] = useState(0);
+  useEffect(() => {
+    const total =
+      data?.data.products.reduce((sum, ele) => sum + ele.count, 0) || 0;
+    setNumOfCartItems(total);
+  }, [data?.data.products]);
   return (
     <div
       className="
-      
       bg-white 
         "
     >
@@ -61,14 +73,22 @@ const DesktopHeader = () => {
             </button>
             <button
               onClick={() => {
-                dispatch(openCart());
+                if (isAuthenticated) {
+                  dispatch(openCart());
+                } else {
+                  toast.error("Please login to view your cart");
+                }
               }}
               aria-label="Cart"
               className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
             >
               <img className="h-[20px] w-[20px]" src={cart} alt="Cart Icon" />
               <span className="absolute top-1 right-1 bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
-                2
+                {isAuthenticated
+                  ? numOfCartItems > 0
+                    ? numOfCartItems
+                    : 0
+                  : 0}
               </span>
             </button>
 
