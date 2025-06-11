@@ -8,24 +8,34 @@ import { Button } from "../ui/button";
 import { Menu, Search } from "lucide-react";
 import BottomHeader from "./BottomHeader";
 import UserMenu from "./UserMenu";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { openCart } from "@/app/features/Cart/cartSlice";
 import useGetAllCart from "@/api/cart/useGetAllCart";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import toast from "react-hot-toast";
+import { getAllWishlistItems } from "@/app/features/wishlist/wishlistSlice";
 const DesktopHeader = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { items } = useAppSelector((state: RootState) => state.wishlist);
   // Get All Cart Items
   const { data } = useGetAllCart();
   const [numOfCartItems, setNumOfCartItems] = useState(0);
+
   useEffect(() => {
     const total =
       data?.data.products.reduce((sum, ele) => sum + ele.count, 0) || 0;
     setNumOfCartItems(total);
   }, [data?.data.products]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getAllWishlistItems());
+    }
+  }, [isAuthenticated, dispatch]);
+
   return (
     <div
       className="
@@ -60,8 +70,13 @@ const DesktopHeader = () => {
         <div>
           <ul className="flex items-center gap-4">
             <button
+              onClick={() => {
+                if (!isAuthenticated) {
+                  toast.error("Please login to view your wish list");
+                }
+              }}
               aria-label="Wish List"
-              className="p-2 focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
+              className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
             >
               <Link to={AppRoutes.WISH_LIST}>
                 <img
@@ -69,6 +84,10 @@ const DesktopHeader = () => {
                   src={heart}
                   alt="Wishlist Icon"
                 />
+
+                <span className="absolute top-[3px] right-[3px] bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
+                  {isAuthenticated ? (items.length > 0 ? items.length : 0) : 0}
+                </span>
               </Link>
             </button>
             <button
