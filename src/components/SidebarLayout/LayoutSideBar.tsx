@@ -8,29 +8,33 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { ADMIN_PAGES } from "@/data";
 import { Link, useLocation } from "react-router-dom";
 import Divider from "../ui/Divider";
-
-export function AppSidebar() {
+import type { ElementType } from "react";
+interface IProps {
+  pages: { name: string; icon: ElementType; url: string }[];
+  to: string;
+}
+export function AppSidebar({ pages, to }: IProps) {
   const { pathname } = useLocation();
+
   return (
     <Sidebar className="w-[250px] rounded-md overflow-hidden md:static md:!h-fit border-r  shadow-md">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center justify-between text-lg font-semibold text-gray-700">
-            <span>Admin Dashboard</span>
+            <span>{to == "admin" ? "Admin Dashboard" : "User Dashboard"}</span>
           </SidebarGroupLabel>
           <Divider />
           <SidebarGroupContent>
             <SidebarMenu>
-              {ADMIN_PAGES.map((item) => (
+              {pages.map((item) => (
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton asChild>
                     <Link
-                      to={`/admin${item.url}`}
+                      to={`/${to}${item.url}`}
                       className={`inline-block hover:bg-gray-100 py-[25px] rounded-none  ${
-                        pathname === `/admin${item.url}`
+                        pathname === `/${to}${item.url}`
                           ? "bg-gray-50 border-l-4 border-l-success-200 text-gray-900 text-body-md-500 "
                           : "text-gray-600 text-body-sm-500"
                       }`}

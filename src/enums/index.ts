@@ -14,4 +14,7 @@ export enum AppRoutes {
   COUPONS = "/coupons",
   ORDERS = "/orders",
   SUB_CATEGORIES = "/subcategories",
+  USER_PROFILE = "/profile",
+  USER_ADDRESSES = "/address",
+  TRACK_ORDERS = "/track-order",
 }

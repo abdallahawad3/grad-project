@@ -1,6 +1,7 @@
 import Navbar from "@/components/header";
 import { AppSidebar } from "@/components/SidebarLayout/LayoutSideBar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { ADMIN_PAGES } from "@/data";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -25,7 +26,7 @@ const AdminLayout = () => {
       <Navbar />
       <SidebarProvider>
         <div className="container mt-10 flex w-[98%] gap-5">
-          <AppSidebar />
+          <AppSidebar to="admin" pages={ADMIN_PAGES} />
           <main className="mt-5 flex-1 mx-auto">
             {isMobile && <SidebarTrigger />}
             <Outlet />

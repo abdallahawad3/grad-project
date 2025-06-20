@@ -72,17 +72,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path={AppRoutes.WISH_LIST}
-            element={
-              <ProtectedRoute
-                redirectPath="/"
-                isAuthenticated={isAuthenticated}
-              >
-                <Wishlist />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path={AppRoutes.CART}
             element={
@@ -147,8 +137,7 @@ const App = () => {
           <Route index element={<UserHomePage />} />
           <Route path="orders" element={<OrdersHistory />} />
           <Route path="address" element={<Addresses />} />
-          <Route path="cart" element={<ShoppingCart />} />
-          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="wishlist" element={<Wishlist padding="0" />} />
           <Route path="track-order" element={<TrackOrder />} />
           <Route path="settings" element={<Settings />} />
         </Route>

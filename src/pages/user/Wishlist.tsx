@@ -19,7 +19,10 @@ import {
 import { Heart } from "lucide-react";
 import { Fragment, useEffect } from "react";
 import toast from "react-hot-toast";
-const Wishlist = () => {
+interface IProps {
+  padding: string;
+}
+const Wishlist = ({ padding }: IProps) => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const { items, loading } = useAppSelector(
     (state: RootState) => state.wishlist
@@ -41,7 +44,7 @@ const Wishlist = () => {
     );
   }
   return (
-    <section className="container py-20">
+    <section className={`container ${padding}`}>
       <Table className="border rounded-md">
         <TableCaption>
           Your Wishlist Items are: <strong>{items.length}</strong>

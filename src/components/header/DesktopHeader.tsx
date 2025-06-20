@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import toast from "react-hot-toast";
 import { getAllWishlistItems } from "@/app/features/wishlist/wishlistSlice";
-import { openCart } from "@/app/features/Cart/cartSlice";
+import { getAllCartItems, openCart } from "@/app/features/Cart/cartSlice";
 const DesktopHeader = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
@@ -24,6 +24,7 @@ const DesktopHeader = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getAllWishlistItems());
+      dispatch(getAllCartItems());
     }
   }, [isAuthenticated, dispatch]);
 
@@ -69,7 +70,7 @@ const DesktopHeader = () => {
               aria-label="Wish List"
               className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
             >
-              <Link to={AppRoutes.WISH_LIST}>
+              <Link to={`/user${AppRoutes.WISH_LIST}`}>
                 <img
                   className="h-[20px] w-[20px]"
                   src={heart}
