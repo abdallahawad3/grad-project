@@ -1,12 +1,12 @@
-import useGetAllCart from "./useGetAllCart";
+// import useGetAllCart from "./useGetAllCart";
 
-const useGetSingleCart = () => {
-  const { data } = useGetAllCart();
-  const getSingleCart = (cartId: string) => {
-    return data?.data.products.find((item) => item.product._id === cartId);
-  };
+// const useGetSingleCart = () => {
+//   const { data } = useGetAllCart();
+//   const getSingleCart = (cartId: string) => {
+//     return data?.data.products.find((item) => item.product._id === cartId);
+//   };
 
-  return { getSingleCart };
-};
+//   return { getSingleCart };
+// };
 
-export default useGetSingleCart;
+// export default useGetSingleCart;

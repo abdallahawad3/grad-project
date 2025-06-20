@@ -9,26 +9,17 @@ import { Menu, Search } from "lucide-react";
 import BottomHeader from "./BottomHeader";
 import UserMenu from "./UserMenu";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { openCart } from "@/app/features/Cart/cartSlice";
-import useGetAllCart from "@/api/cart/useGetAllCart";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import toast from "react-hot-toast";
 import { getAllWishlistItems } from "@/app/features/wishlist/wishlistSlice";
+import { openCart } from "@/app/features/Cart/cartSlice";
 const DesktopHeader = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const { items } = useAppSelector((state: RootState) => state.wishlist);
-  // Get All Cart Items
-  const { data } = useGetAllCart();
-  const [numOfCartItems, setNumOfCartItems] = useState(0);
-
-  useEffect(() => {
-    const total =
-      data?.data.products.reduce((sum, ele) => sum + ele.count, 0) || 0;
-    setNumOfCartItems(total);
-  }, [data?.data.products]);
+  const { totalQuantity } = useAppSelector((state: RootState) => state.cart);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -103,11 +94,7 @@ const DesktopHeader = () => {
             >
               <img className="h-[20px] w-[20px]" src={cart} alt="Cart Icon" />
               <span className="absolute top-1 right-1 bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
-                {isAuthenticated
-                  ? numOfCartItems > 0
-                    ? numOfCartItems
-                    : 0
-                  : 0}
+                {isAuthenticated ? (totalQuantity > 0 ? totalQuantity : 0) : 0}
               </span>
             </button>
 
