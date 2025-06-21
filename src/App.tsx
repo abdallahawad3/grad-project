@@ -35,6 +35,7 @@ import ProtectedRoute from "./components/Auth/ProtectedRoutes";
 import ManageSubCategories from "./pages/admin/ManageSubCategories/ManageSubCategories";
 import ManageCoupons from "./pages/admin/ManageCoupons/ManageCoupons";
 import ManageAddresses from "./pages/user/ManageAddresses/ManageAddresses";
+import Payment from "./pages/Payment";
 
 const App = () => {
   const { isAuthenticated, role } = useAppSelector(
@@ -50,6 +51,19 @@ const App = () => {
           <Route path={AppRoutes.CONTACT} element={<ContactPage />} />
           <Route path={AppRoutes.PRODUCTS} element={<ShopPage />} />
           <Route path={AppRoutes.PRODUCT} element={<ProductPage />} />
+
+          <Route
+            path={AppRoutes.PAYMENT}
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAuthenticated={isAuthenticated}
+              >
+                <Payment />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path={AppRoutes.LOGIN}
             element={

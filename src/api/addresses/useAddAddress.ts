@@ -9,6 +9,7 @@ interface IAddressResponse {
     alias: string;
     details: string;
     phone: string;
+    postalCode: string;
     _id: string;
   }[];
 }
@@ -17,6 +18,7 @@ interface IAddressRequest {
   alias: string;
   details: string;
   phone: string;
+  postalCode: string;
 }
 
 const addNewAddress = async (

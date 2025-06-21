@@ -47,6 +47,7 @@ const ManageAddressesForm = ({
       alias: "",
       details: "",
       phone: "",
+      postalCode: "",
     },
   });
 
@@ -100,6 +101,7 @@ const ManageAddressesForm = ({
         alias: data.alias || "",
         details: data.details || "",
         phone: data.phone || "",
+        postalCode: data.postalCode || "",
       });
     } else if (!open) {
       form.reset();
@@ -157,7 +159,19 @@ const ManageAddressesForm = ({
                 </FormItem>
               )}
             />
-
+            <FormField
+              control={form.control}
+              name="postalCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Zip Code</FormLabel>
+                  <FormControl>
+                    <Input type="number" placeholder="12345" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="phone"

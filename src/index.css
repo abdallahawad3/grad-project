@@ -172,6 +172,6 @@
   background-repeat: no-repeat;
 }
 
-body {
-  /* pointer-events: all !important;/ */
+[data-state="checked"] {
+  padding: 0 1px !important;
 }

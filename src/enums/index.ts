@@ -17,4 +17,5 @@ export enum AppRoutes {
   USER_PROFILE = "/profile",
   USER_ADDRESSES = "/address",
   TRACK_ORDERS = "/track-order",
+  PAYMENT = "/payment-method",
 }

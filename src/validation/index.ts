@@ -115,4 +115,7 @@ export const ADDRESS_SCHEMA = z.object({
   phone: z.string().min(10, {
     message: "Phone number must be at least 10 digits.",
   }),
+  postalCode: z.string().min(5, {
+    message: "Zip code must be at least 5 characters.",
+  }),
 });
