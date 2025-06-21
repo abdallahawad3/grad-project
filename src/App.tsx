@@ -18,7 +18,6 @@ import Orders from "./pages/admin/Orders";
 import UserLayout from "./layouts/UserLayout";
 import UserHomePage from "./pages/user";
 import OrdersHistory from "./pages/user/Orders";
-import Addresses from "./pages/user/Addresses";
 import { Settings } from "lucide-react";
 import Wishlist from "./pages/user/Wishlist";
 import TrackOrder from "./pages/user/TrackOrders";
@@ -35,6 +34,7 @@ import type { RootState } from "./app/store";
 import ProtectedRoute from "./components/Auth/ProtectedRoutes";
 import ManageSubCategories from "./pages/admin/ManageSubCategories/ManageSubCategories";
 import ManageCoupons from "./pages/admin/ManageCoupons/ManageCoupons";
+import ManageAddresses from "./pages/user/ManageAddresses/ManageAddresses";
 
 const App = () => {
   const { isAuthenticated, role } = useAppSelector(
@@ -136,7 +136,7 @@ const App = () => {
         >
           <Route index element={<UserHomePage />} />
           <Route path="orders" element={<OrdersHistory />} />
-          <Route path="address" element={<Addresses />} />
+          <Route path="address" element={<ManageAddresses />} />
           <Route path="wishlist" element={<Wishlist padding="0" />} />
           <Route path="track-order" element={<TrackOrder />} />
           <Route path="settings" element={<Settings />} />

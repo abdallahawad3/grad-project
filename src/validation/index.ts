@@ -104,3 +104,15 @@ export const CHECKOUT_VALIDATION = z.object({
     message: "Zip code must be at least 5 characters.",
   }),
 });
+
+export const ADDRESS_SCHEMA = z.object({
+  alias: z.string().min(2, {
+    message: "Home must be at least 2 characters.",
+  }),
+  details: z.string().min(2, {
+    message: "Address details must be at least 2 characters.",
+  }),
+  phone: z.string().min(10, {
+    message: "Phone number must be at least 10 digits.",
+  }),
+});
