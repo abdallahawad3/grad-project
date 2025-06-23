@@ -74,7 +74,6 @@ import EmblaCarousel from "./EmblaCarousel";
 
 */
 import { type EmblaOptionsType } from "embla-carousel";
-import "./css/base.css";
 import "./css/embla.css";
 import {
   hero1,

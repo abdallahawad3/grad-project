@@ -7,7 +7,7 @@ const BottomHeader = () => {
   const currenPage = location.pathname.split("/")[1].toLocaleLowerCase();
 
   return (
-    <div className="bg-gray-50 hidden md:block">
+    <div className="bg-gray-50 hidden md:block ">
       <div className="container">
         <ul className="flex gap-4 items-center justify-content-between ">
           <div>

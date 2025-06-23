@@ -124,7 +124,7 @@ const ProductCard = memo(
                 }}
               >
                 {items.some((item) => item._id === product._id) ? (
-                  <Heart size={20} fill="#FF0000" />
+                  <Heart className="w-20 h-20" size={20} fill="#FF0000" />
                 ) : (
                   <Heart size={20} color="#000" />
                 )}

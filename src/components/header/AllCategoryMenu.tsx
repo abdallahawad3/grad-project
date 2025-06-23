@@ -22,7 +22,7 @@ const AllCategoryMenu = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="relative">
-        <Button className="focus-visible:ring-none bg-success-500 py-7 rounded-none hover:bg-success-400">
+        <Button className="focus-visible:ring-none  bg-success-500 py-8 rounded-none hover:bg-success-400">
           <img src={menu} alt="menu" />
           All Categories
           <img src={arrowDown} alt="arrow down" />

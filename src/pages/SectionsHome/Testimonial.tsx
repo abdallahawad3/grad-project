@@ -7,7 +7,6 @@ import useFetchAllReviews from "@/api/products/useGetAllRev";
 
 export default function Testimonial() {
   const { data } = useFetchAllReviews();
-  console.log(data?.data);
   const persons = data?.data.map((item: any, idx: number) => {
     return {
       img: idx === 0 ? Person1 : idx === 1 ? Person2 : Person3,
@@ -24,7 +23,7 @@ export default function Testimonial() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-          {persons?.map((person: any, index: any) => (
+          {persons?.slice(0, 3).map((person: any, index: any) => (
             <div key={index} className="flex flex-col items-center">
               <div className="relative  bg-[#fff] p-6 rounded-lg text-center">
                 <div className="mb-4 flex justify-center">
