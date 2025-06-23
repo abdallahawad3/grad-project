@@ -14,7 +14,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageBrands from "./pages/admin/ManageBrands/ManageBrands";
 import ManageCategories from "./pages/admin/ManageCategories/ManageCategories";
-import Orders from "./pages/admin/Orders";
+import Orders from "./pages/admin/ManageOrders/Orders";
 import UserLayout from "./layouts/UserLayout";
 import UserHomePage from "./pages/user";
 import OrdersHistory from "./pages/user/Orders";
@@ -36,6 +36,7 @@ import ManageSubCategories from "./pages/admin/ManageSubCategories/ManageSubCate
 import ManageCoupons from "./pages/admin/ManageCoupons/ManageCoupons";
 import ManageAddresses from "./pages/user/ManageAddresses/ManageAddresses";
 import Payment from "./pages/Payment";
+import TrackOrderAdmin from "./pages/admin/ManageOrders/TrackOrderAdmin";
 
 const App = () => {
   const { isAuthenticated, role } = useAppSelector(
@@ -132,6 +133,7 @@ const App = () => {
           <Route path="categories" element={<ManageCategories />} />
           <Route path="coupons" element={<ManageCoupons />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="manage-order/:orderId" element={<TrackOrderAdmin />} />
         </Route>
 
         {/* User Layout */}
