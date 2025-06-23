@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/imgs/Logo.png";
-import cart from "@/assets/svg/Rectangle.svg";
+import cartImg from "@/assets/svg/Rectangle.svg";
 import heart from "@/assets/svg/Heart.svg";
 import { AppRoutes } from "@/enums";
 import { Input } from "../ui/input";
@@ -17,32 +17,22 @@ import { getAllWishlistItems } from "@/app/features/wishlist/wishlistSlice";
 import { getAllCartItems, openCart } from "@/app/features/Cart/cartSlice";
 const DesktopHeader = () => {
   const dispatch = useAppDispatch();
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, role, cart } = useSelector(
+    (state: RootState) => state.auth
+  );
   const { items } = useAppSelector((state: RootState) => state.wishlist);
   const { totalQuantity } = useAppSelector((state: RootState) => state.cart);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && role === "user" && cart.products.length > 0) {
       dispatch(getAllWishlistItems());
       dispatch(getAllCartItems());
     }
-  }, [isAuthenticated, dispatch]);
+  }, [isAuthenticated, dispatch, role, cart.products]);
 
   return (
-    <div
-      className="
-      bg-white 
-        "
-    >
-      <nav
-        className="  
-        flex 
-        items-center 
-        justify-between 
-        p-4
-        container
-   "
-      >
+    <div className="bg-white ">
+      <nav className="  flex items-center justify-between p-4 container">
         <div>
           <Link to={AppRoutes.HOME}>
             <img
@@ -60,49 +50,61 @@ const DesktopHeader = () => {
           </Button>
         </div>
         <div>
-          <ul className="flex items-center gap-4">
-            <button
-              onClick={() => {
-                if (!isAuthenticated) {
-                  toast.error("Please login to view your wish list");
-                }
-              }}
-              aria-label="Wish List"
-              className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
-            >
-              <Link to={`/user${AppRoutes.WISH_LIST}`}>
+          {role === "user" && (
+            <ul className="flex items-center gap-4">
+              <button
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    toast.error("Please login to view your wishlist");
+                  }
+                }}
+                aria-label="Wish List"
+                className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
+              >
+                <Link to={`/user${AppRoutes.WISH_LIST}`}>
+                  <img
+                    className="h-[20px] w-[20px]"
+                    src={heart}
+                    alt="Wishlist Icon"
+                  />
+
+                  <span className="absolute top-[3px] right-[3px] bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
+                    {isAuthenticated
+                      ? items.length > 0
+                        ? items.length
+                        : 0
+                      : 0}
+                  </span>
+                </Link>
+              </button>
+              <button
+                onClick={() => {
+                  if (isAuthenticated) {
+                    dispatch(openCart());
+                  } else {
+                    toast.error("Please login to view your cart");
+                  }
+                }}
+                aria-label="Cart"
+                className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
+              >
                 <img
                   className="h-[20px] w-[20px]"
-                  src={heart}
-                  alt="Wishlist Icon"
+                  src={cartImg}
+                  alt="Cart Icon"
                 />
-
-                <span className="absolute top-[3px] right-[3px] bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
-                  {isAuthenticated ? (items.length > 0 ? items.length : 0) : 0}
+                <span className="absolute top-1 right-1 bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
+                  {isAuthenticated
+                    ? totalQuantity > 0
+                      ? totalQuantity
+                      : 0
+                    : 0}
                 </span>
-              </Link>
-            </button>
-            <button
-              onClick={() => {
-                if (isAuthenticated) {
-                  dispatch(openCart());
-                } else {
-                  toast.error("Please login to view your cart");
-                }
-              }}
-              aria-label="Cart"
-              className="p-2 mr-2 relative focus:outline-none focus:ring-2 focus:ring-success-400 rounded"
-            >
-              <img className="h-[20px] w-[20px]" src={cart} alt="Cart Icon" />
-              <span className="absolute top-1 right-1 bg-success-500 text-white text-[10px] font-semibold rounded-full px-1">
-                {isAuthenticated ? (totalQuantity > 0 ? totalQuantity : 0) : 0}
-              </span>
-            </button>
-
-            <UserMenu />
-
-            <Menu size={20} className="md:hidden cursor-pointer" />
-          </ul>
+              </button>
+              <UserMenu />
+            </ul>
+          )}
+          <Menu size={20} className="md:hidden cursor-pointer" />
         </div>
       </nav>
       <BottomHeader />

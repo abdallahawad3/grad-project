@@ -10,16 +10,19 @@ const ProductList = ({ products }: { products: IProduct[] }) => {
   const { items, loading } = useAppSelector(
     (state: RootState) => state.wishlist
   );
-  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const { isAuthenticated, role, cart } = useAppSelector(
+    (state: RootState) => state.auth
+  );
   const { data } = useAppSelector((state: RootState) => state.cart);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && role === "user" && cart.products.length > 0) {
       dispatch(getAllWishlistItems());
       dispatch(getAllCartItems());
     }
-  }, [isAuthenticated, dispatch]);
+  }, [isAuthenticated, dispatch, role, cart.products]);
+
   return (
     <>
       {products &&

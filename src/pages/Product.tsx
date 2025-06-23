@@ -30,17 +30,19 @@ const ProductPage = () => {
   const { items, loading: wishlistLoading } = useAppSelector(
     (state: RootState) => state.wishlist
   );
-  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const { isAuthenticated, cart, role } = useAppSelector(
+    (state: RootState) => state.auth
+  );
   const { data, loading: cartLoading } = useAppSelector(
     (state: RootState) => state.cart
   );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && cart.products.length > 0 && role === "user") {
       dispatch(getAllCartItems());
     }
-  }, [isAuthenticated, dispatch]);
+  }, [isAuthenticated, dispatch, cart.products, role]);
 
   return (
     <section className="container py-10">

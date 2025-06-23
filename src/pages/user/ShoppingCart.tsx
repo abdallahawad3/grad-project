@@ -29,11 +29,15 @@ const ShoppingCart = () => {
     coupon: code,
   } = useAppSelector((state: RootState) => state.cart);
   const [coupon, setCoupon] = useState(code || "");
-
+  const { isAuthenticated, cart } = useAppSelector(
+    (state: RootState) => state.auth
+  );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getAllCartItems());
-  }, [dispatch]);
+    if (isAuthenticated && cart.products.length > 0) {
+      dispatch(getAllCartItems());
+    }
+  }, [dispatch, cart.products, isAuthenticated]);
   return (
     <section className="container py-20">
       <div className="flex flex-col md:flex-row gap-4">

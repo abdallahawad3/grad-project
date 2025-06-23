@@ -26,9 +26,10 @@ const Payment = () => {
   );
   const dispatch = useAppDispatch();
   const { data } = useGetAddresses();
+
   const { mutate: AddOrder } = useAddOrder();
 
-  // ! Fetch all cart items //
+  // ! Fetch all cart items on component mount //
   useEffect(() => {
     dispatch(getAllCartItems());
   }, [dispatch]);

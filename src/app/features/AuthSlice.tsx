@@ -32,6 +32,41 @@ interface UserState {
   error: string | null;
   role: string;
   isAuthenticated: boolean;
+  cart: {
+    _id: string;
+    products: {
+      product: {
+        _id: string;
+        title: string;
+        slug: string;
+        description: string;
+        quantity: number;
+        sold: number;
+        price: number;
+        priceAfterDiscount: number;
+        availableColors: string[];
+        imageCover: string;
+        images: string[];
+        category: string;
+        subcategory: string[];
+        brand: string;
+        ratingsQuantity: number;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+        ratingsAverage: number;
+        id: string;
+      };
+      count: number;
+      price: number;
+      _id: string;
+    }[];
+    cartOwner: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    totalCartPrice: number;
+  };
 }
 
 const initialState: UserState = {
@@ -53,6 +88,15 @@ const initialState: UserState = {
   role: CookieServices.get("role") || "",
   loading: false,
   error: null,
+  cart: CookieServices.get("cart") || {
+    _id: "",
+    products: [],
+    cartOwner: "",
+    createdAt: "",
+    updatedAt: "",
+    __v: 0,
+    totalCartPrice: 0,
+  },
 };
 
 export const loginUser = createAsyncThunk(
@@ -69,9 +113,8 @@ export const loginUser = createAsyncThunk(
       if (status === 200) {
         CookieServices.set("token", data.token, {});
         CookieServices.set("role", data.data.role, {});
-        CookieServices.set("user", JSON.stringify(data.data), {
-          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
-        });
+        CookieServices.set("cart", JSON.stringify(data.cart), {});
+        CookieServices.set("user", JSON.stringify(data.data), {});
       }
       return data;
     } catch (error) {
