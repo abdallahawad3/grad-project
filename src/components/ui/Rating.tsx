@@ -1,24 +1,19 @@
-import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 
 export function RatingComponent({
   isReadOnly,
   ratingVal,
+  handleRating,
 }: {
   isReadOnly: boolean;
-  ratingVal?: number;
+  ratingVal: number;
+  handleRating?: (rate: number) => void;
 }) {
-  const [rating, setRating] = useState(ratingVal || 0);
-
-  const handleRating = (rate: number) => {
-    setRating(rate);
-  };
-
   return (
     <div className="flex">
       <Rating
         onClick={handleRating}
-        initialValue={rating}
+        initialValue={ratingVal}
         SVGstyle={{ display: "inline-block", width: "20px", height: "20px" }}
         className="!flex !cursor-pointer"
         allowFraction={true}

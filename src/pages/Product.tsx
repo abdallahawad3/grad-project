@@ -1,9 +1,13 @@
 import useGetAllProducts from "@/api/products/useGetAllProducts";
 import useGetSingleProduct from "@/api/products/useGetSingleProduct";
+import { getAllCartItems } from "@/app/features/Cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import type { RootState } from "@/app/store";
 import ProductList from "@/components/products/ProductList";
 import Details from "@/components/SingleProduct/Details";
 import ProductSwiper from "@/components/SingleProduct/ProductSwiper";
 import { ProductTabs } from "@/components/SingleProduct/Tabs";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const ProductPage = () => {
@@ -23,6 +27,20 @@ const ProductPage = () => {
     src: image,
     alt: "Product Image",
   }));
+  const { items, loading: wishlistLoading } = useAppSelector(
+    (state: RootState) => state.wishlist
+  );
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const { data, loading: cartLoading } = useAppSelector(
+    (state: RootState) => state.cart
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getAllCartItems());
+    }
+  }, [isAuthenticated, dispatch]);
 
   return (
     <section className="container py-10">
@@ -33,11 +51,20 @@ const ProductPage = () => {
         </div>
         {/* Right Hand Side Description */}
         <div className="flex-1">
-          {singleProduct && <Details product={singleProduct?.data} />}
+          {singleProduct && (
+            <Details
+              wishlistLoading={wishlistLoading}
+              cartLoading={cartLoading}
+              items={items ?? []}
+              isAuthenticated={isAuthenticated}
+              cartItems={data ?? {}}
+              product={singleProduct?.data}
+            />
+          )}
         </div>
       </div>
       <div className="py-10">
-        <ProductTabs />
+        <ProductTabs productId={id as string} />
       </div>
       <div>
         <h2 className="text-heading5 font-bold text-center  mb-4">

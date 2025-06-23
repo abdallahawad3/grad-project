@@ -18,6 +18,7 @@ export interface IProduct {
   category: string;
   subcategory: string[];
   ratingsQuantity: number;
+  ratingsAverage?: number;
   createdAt: string;
   updatedAt: string;
   id: string;

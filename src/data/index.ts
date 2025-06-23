@@ -105,11 +105,6 @@ export const USER_PAGES = [
     url: AppRoutes.WISH_LIST,
   },
   {
-    name: "Track Orders",
-    icon: Tags,
-    url: AppRoutes.TRACK_ORDERS,
-  },
-  {
     name: "Addresses",
     icon: Tags,
     url: AppRoutes.USER_ADDRESSES,

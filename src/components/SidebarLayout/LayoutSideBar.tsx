@@ -11,6 +11,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import Divider from "../ui/Divider";
 import type { ElementType } from "react";
+import { ShoppingBag } from "lucide-react";
 interface IProps {
   pages: { name: string; icon: ElementType; url: string }[];
   to: string;
@@ -45,6 +46,19 @@ export function AppSidebar({ pages, to }: IProps) {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              {to === "user" && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link
+                      to={`/cart`}
+                      className={`inline-block hover:bg-gray-100 py-[25px] rounded-none  `}
+                    >
+                      <ShoppingBag className="w-5 h-5" />
+                      <span>cart</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

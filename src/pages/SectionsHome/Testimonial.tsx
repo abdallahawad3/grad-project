@@ -1,14 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Person1 from "../../images/person1.png";
 import Person2 from "../../images/person2.png";
 import Person3 from "../../images/person3.png";
 import Quote from "../../images/Quote.png";
+import useFetchAllReviews from "@/api/products/useGetAllRev";
 
 export default function Testimonial() {
-  const persons = [
-    { img: Person1, name: "Jenny Wilson" },
-    { img: Person2, name: "Guy Hawkins" },
-    { img: Person3, name: "Kathryn Murphy" },
-  ];
+  const { data } = useFetchAllReviews();
+  console.log(data?.data);
+  const persons = data?.data.map((item: any, idx: number) => {
+    return {
+      img: idx === 0 ? Person1 : idx === 1 ? Person2 : Person3,
+      name: item.user.name,
+      review: item.review,
+    };
+  });
 
   return (
     <section className="py-12 px-4 bg-[#EDF2EE] font-poppins">
@@ -18,7 +24,7 @@ export default function Testimonial() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-          {persons.map((person, index) => (
+          {persons?.map((person: any, index: any) => (
             <div key={index} className="flex flex-col items-center">
               <div className="relative  bg-[#fff] p-6 rounded-lg text-center">
                 <div className="mb-4 flex justify-center">
@@ -26,9 +32,7 @@ export default function Testimonial() {
                 </div>
 
                 <p className="text-[#406B42] text-[16px] font-normal">
-                  “Aenean et nisl eget eros consectetur vestibulum vel id erat.
-                  Aliquam feugiat massa dui. Sed sagittis diam sit amet ante
-                  sodales semper. Aliquam commodo lorem laoreet ultricies ele. ”
+                  “{person.review}”
                 </p>
 
                 <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-[#fff] absolute left-1/2 transform -translate-x-1/2 bottom-[-8px]"></div>

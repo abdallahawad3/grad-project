@@ -186,7 +186,7 @@ const ShoppingCart = () => {
             variant={"myButton"}
             className=" mt-4 rounded-full py-[14px] px-[32px] w-full"
           >
-            Proceed to Checkout
+            <Link to={"/payment-method"}>Proceed To Checkout</Link>
           </Button>
         </div>
       </div>

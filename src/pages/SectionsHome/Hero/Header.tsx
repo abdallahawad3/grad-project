@@ -1,17 +1,11 @@
 "use client";
-
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import ImageHome from "../../images/fruits.png";
-
-export default function Header() {
-  const totalSlides = 3;
-  const currentSlide = 1;
-
-  return (
-    <div className="relative">
-      <div className="relative w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0  h-[calc(100vh-120px)] md:h-[calc(100vh-164px)]">
+import EmblaCarousel from "./EmblaCarousel";
+// import { ArrowLeft, ArrowRight } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { cn } from "@/lib/utils";
+// import ImageHome from "../../images/fruits.png";
+/*
+<div className="relative w-full bg-white flex items-center justify-center overflow-hidden px-4 py-8 md:py-0  h-[calc(100vh-120px)] md:h-[calc(100vh-164px)]">
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
           <Button
             variant="ghost"
@@ -32,7 +26,7 @@ export default function Header() {
           </Button>
         </div>
 
-        {/* Content */}
+        
         <div className="flex flex-col md:flex-row items-center gap-6 lg:gap-10 w-full max-w-7xl px-4">
           <div className="relative w-full md:w-auto mt-8 md:mt-0">
             <img
@@ -77,6 +71,74 @@ export default function Header() {
           ))}
         </div>
       </div>
-    </div>
-  );
+
+*/
+import { type EmblaOptionsType } from "embla-carousel";
+import "./css/base.css";
+import "./css/embla.css";
+import {
+  hero1,
+  hero2,
+  hero3,
+  hero4,
+  hero5,
+  hero6,
+  hero7,
+} from "@/assets/imgs/hero";
+
+const OPTIONS: EmblaOptionsType = { loop: true };
+const heroSlides = [
+  {
+    imageUrl: hero1,
+    heading: "Welcome to Our Store",
+    description: "Discover the best products curated just for you.",
+    buttonText: "Go to Shop",
+    buttonLink: "/shop",
+  },
+  {
+    imageUrl: hero2,
+    heading: "Summer Collection",
+    description: "Fresh looks for the sunny season.",
+    buttonText: "Explore Now",
+    buttonLink: "/shop/summer",
+  },
+  {
+    imageUrl: hero3,
+    heading: "Organic Freshness",
+    description: "Experience the taste of organic goodness.",
+    buttonText: "Shop Organic",
+    buttonLink: "/shop/organic",
+  },
+  {
+    imageUrl: hero4,
+    heading: "Limited Time Offer",
+    description: "Grab your favorites before they're gone!",
+    buttonText: "Shop Now",
+    buttonLink: "/shop/limited-time",
+  },
+  {
+    imageUrl: hero5,
+    heading: "Healthy Living",
+    description: "Embrace a healthier lifestyle with our products.",
+    buttonText: "Learn More",
+    buttonLink: "/shop/healthy-living",
+  },
+  {
+    imageUrl: hero6,
+    heading: "New Arrivals",
+    description: "Check out the latest additions to our collection.",
+    buttonText: "See New Arrivals",
+    buttonLink: "/shop/new-arrivals",
+  },
+  {
+    imageUrl: hero7,
+    heading: "Welcome to Our Store",
+    description: "Discover the best products curated just for you.",
+    buttonText: "Go to Shop",
+    buttonLink: "/shop",
+  },
+];
+
+export default function Header() {
+  return <EmblaCarousel slides={heroSlides} options={OPTIONS} />;
 }

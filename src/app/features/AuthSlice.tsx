@@ -35,7 +35,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  data: {
+  data: CookieServices.get("user") || {
     _id: "",
     name: "",
     slug: "",

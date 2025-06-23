@@ -243,9 +243,8 @@ const RenderList = ({
                     <div className="flex items-center space-x-2 w-[100%]">
                       <Checkbox
                         color="blue"
-                        className="custom-checkbox"
+                        className="data-[state=checked]:border-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:text-white dark:data-[state=checked]:border-[blue] dark:data-[state=checked]:bg-[blue]"
                         id={`${category}`}
-                        // className="text-blue-700 hover:text-blue-900"
                       />
                       <label
                         htmlFor={`${category}`}

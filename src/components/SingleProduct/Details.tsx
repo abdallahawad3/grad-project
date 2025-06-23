@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Badge } from "../ui/badge";
 import Divider from "../ui/Divider";
 import { RatingComponent } from "../ui/Rating";
@@ -5,12 +6,42 @@ import instgram from "../../assets/svg/instgram.svg";
 import twitter from "../../assets/svg/twitter.svg";
 import painterest from "../../assets/svg/painterest.svg";
 import cart from "../../assets/svg/Rectangle.svg";
-import heart from "../../assets/svg/heart.svg";
 import type { IProduct } from "@/interface";
-import AddToCartDiv from "../resuable/AddToCartDiv";
-const Details = ({ product }: { product: IProduct }) => {
+import { useAppDispatch } from "@/app/hooks";
+import { addToCart, removeFromCart } from "@/app/features/Cart/cartSlice";
+import toast from "react-hot-toast";
+import { Button } from "../ui/button";
+import {
+  addProductToWishlist,
+  removeProductFromWishlist,
+} from "@/app/features/wishlist/wishlistSlice";
+import { Heart } from "lucide-react";
+import Loading from "@/miscellaneous/Loading";
+interface DetailsProps {
+  product: IProduct | null;
+  cartItems?: any;
+  isAuthenticated?: boolean;
+  items: any[];
+  wishlistLoading: boolean;
+  cartLoading: boolean;
+}
+const Details = ({
+  product,
+  cartItems,
+  isAuthenticated,
+  items,
+  cartLoading,
+  wishlistLoading,
+}: DetailsProps) => {
+  const dispatch = useAppDispatch();
+
   if (!product) return;
-  console.log(product.price);
+  const inCart = cartItems.products.find(
+    (item: any) => item.product._id === product._id
+  );
+
+  console.log(inCart);
+
   return (
     <div>
       <div>
@@ -24,7 +55,10 @@ const Details = ({ product }: { product: IProduct }) => {
         </div>
         <div className="flex gap-5 items-center mt-2">
           <div className="flex gap-3 items-center">
-            <RatingComponent isReadOnly={true} ratingVal={1.75} />
+            <RatingComponent
+              isReadOnly={true}
+              ratingVal={product.ratingsAverage || 1}
+            />
             <p>
               <span className="text-body-sm-400 text-gray-600 underline">
                 {product.ratingsQuantity} Review
@@ -86,53 +120,102 @@ const Details = ({ product }: { product: IProduct }) => {
           </div>
         </div>
         <p className="text-body-sm-400 text-gray-600 mt-3 max-w-[90%]">
-          Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-          per inceptos himenaeos. Nulla nibh diam, blandit vel consequat nec,
-          ultrices et ipsum. Nulla varius magna a consequat pulvinar.
+          {product.description || ""}
         </p>
       </div>
       <Divider />
       <div className="flex flex-col md:flex-row gap-2 md:items-center">
-        <AddToCartDiv />
-        <div className="flex-[.75] ">
-          <button className="w-full bg-[#0A947C] text-white h-[40px] rounded-full flex items-center justify-center gap-2">
-            <span>Add To Cart</span>
-            <span className="group rounded-full">
-              <img
-                className="size-[20px] invert group-hover:brightness-0 group-hover:filter"
-                src={cart}
-                alt="Cart"
-              />
-            </span>
-          </button>
-        </div>
+        {inCart && isAuthenticated ? (
+          <div className="flex-1">
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2  items-center justify-between p-2 border-2 border-[#FCF7AE] h-[40px] rounded-full">
+                <button
+                  onClick={() => {
+                    dispatch(addToCart({ productId: product._id }));
+                  }}
+                  className="bg-[#FCF7AE] size-[30px] block rounded-full"
+                >
+                  {cartLoading ? <Loading /> : "+"}{" "}
+                </button>
+                <span>{inCart.count}</span>
+                <button
+                  disabled={cartLoading}
+                  onClick={() => {
+                    dispatch(removeFromCart({ productId: inCart._id }));
+                  }}
+                  className="bg-[#FCF7AE] size-[30px] block rounded-full "
+                >
+                  {cartLoading ? <Loading /> : "-"}
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="flex-[.75] ">
+              <button
+                disabled={cartLoading}
+                onClick={() => {
+                  if (isAuthenticated) {
+                    dispatch(addToCart({ productId: product._id }));
+                  } else {
+                    toast.error("Please login to add items to cart");
+                  }
+                }}
+                className="w-full bg-[#0A947C] text-white h-[40px] rounded-full flex items-center justify-center gap-2"
+              >
+                <span>Add To Cart</span>
+                <span className="group rounded-full">
+                  <img
+                    className="size-[20px] invert group-hover:brightness-0 group-hover:filter"
+                    src={cart}
+                    alt="Cart"
+                  />
+                </span>
+              </button>
+            </div>
+          </>
+        )}
+
         <div className="flex-[.10]">
-          <button className="w-full bg-[#20B5261A] text-[#0A947C] h-[40px] size-[40px] rounded-full flex items-center justify-center gap-2">
-            <span>
-              <img
-                className="size-[20px] invert-[#0A947C]"
-                src={heart}
-                alt="Cart"
-              />
-            </span>
-          </button>
+          <Button
+            disabled={wishlistLoading}
+            onClick={() => {
+              if (isAuthenticated) {
+                if (items.some((item) => item._id === product._id)) {
+                  dispatch(removeProductFromWishlist(product._id));
+                  toast.success("Product removed from wishlist successfully");
+                } else {
+                  dispatch(addProductToWishlist(product._id));
+                  toast.success("Product added to wishlist successfully");
+                }
+              } else {
+                toast.error("Please login to add items to wishlist");
+              }
+            }}
+            className=" w-12 h-12 border-none hover:bg-white relative focus:outline-none focus:ring-2 focus:ring-success-400 bg-white border-gray-50 rounded-full"
+            aria-label="Add to Wishlist"
+            style={{
+              backgroundColor: items.some((item) => item._id === product._id)
+                ? "#FF0000"
+                : "#FFFFFF",
+            }}
+          >
+            {items.some((item) => item._id === product._id) ? (
+              wishlistLoading ? (
+                <Loading />
+              ) : (
+                <Heart size={20} fill="#FF0000" />
+              )
+            ) : wishlistLoading ? (
+              <Loading />
+            ) : (
+              <Heart size={20} color="#000" />
+            )}
+          </Button>
         </div>
       </div>
       <Divider />
-      <div>
-        <p className="flex items-center gap-2">
-          <span className="text-body-md-500">Category:</span>
-          <span className="text-body-sm-400 text-gray-600 underline underline-offset-4">
-            Vegetables
-          </span>
-        </p>
-        <p className="flex items-center gap-2 mt-2">
-          <span className="text-body-md-500">Tags:</span>
-          <span className="text-body-sm-400 text-gray-600 underline underline-offset-4">
-            Vegetables, Fruits, Organic
-          </span>
-        </p>
-      </div>
     </div>
   );
 };

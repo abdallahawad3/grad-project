@@ -152,7 +152,7 @@ const App = () => {
           <Route path="orders" element={<OrdersHistory />} />
           <Route path="address" element={<ManageAddresses />} />
           <Route path="wishlist" element={<Wishlist padding="0" />} />
-          <Route path="track-order" element={<TrackOrder />} />
+          <Route path={"track-order/:orderId"} element={<TrackOrder />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </>

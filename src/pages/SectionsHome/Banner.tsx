@@ -3,6 +3,7 @@ import ImageBanner2 from "../../images/BannerImage2.png";
 import ImageBanner3 from "../../images/BannerImage3.png";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
@@ -26,8 +27,10 @@ export default function Banner() {
                   <span className="font-medium text-lg">$14.99</span>
                 </p>
                 <Button className="w-full bg-white text-[#00B207] hover:bg-[#00B207] hover:text-white rounded-full px-6 py-2 transition">
-                  Shop Now
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <Link className="flex items-center" to={"/products"}>
+                    Shop Now
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
                 </Button>
               </div>
             </div>
